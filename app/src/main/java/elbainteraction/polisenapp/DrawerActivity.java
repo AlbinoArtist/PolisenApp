@@ -79,17 +79,17 @@ public class DrawerActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_camara) {
+        if (id == R.id.nav_anmalan) {
             fragmentManager.beginTransaction().replace(R.id.main, new AnsokanFragment()).commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_ansokan) {
             fragmentManager.beginTransaction().replace(R.id.main, new AnmalanFragment()).commit();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_aktuellt) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_installning) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_logout) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_vittne) {
 
         }
 
