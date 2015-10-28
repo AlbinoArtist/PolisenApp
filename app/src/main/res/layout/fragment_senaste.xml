@@ -6,8 +6,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Ansökningar"
-        android:id="@+id/textHeader2"
+        android:text="Senaste nytt"
+        android:id="@+id/textHeader3"
         android:layout_gravity="center_horizontal|top"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Här gör man en ansökan"
+        android:text="Här gör man en senaste"
         android:id="@+id/textView3"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />

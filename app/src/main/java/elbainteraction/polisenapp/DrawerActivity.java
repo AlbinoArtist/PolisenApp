@@ -35,7 +35,7 @@ public class DrawerActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main, new AnmalanFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.main, new SenasteFragment()).commit();
 
 
     }
@@ -80,17 +80,17 @@ public class DrawerActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_anmalan) {
-            fragmentManager.beginTransaction().replace(R.id.main, new AnsokanFragment()).commit();
-        } else if (id == R.id.nav_ansokan) {
             fragmentManager.beginTransaction().replace(R.id.main, new AnmalanFragment()).commit();
+        } else if (id == R.id.nav_ansokan) {
+            fragmentManager.beginTransaction().replace(R.id.main, new AnsokanFragment()).commit();
         } else if (id == R.id.nav_aktuellt) {
-
+            fragmentManager.beginTransaction().replace(R.id.main, new SenasteFragment()).commit();
         } else if (id == R.id.nav_installning) {
-
+            fragmentManager.beginTransaction().replace(R.id.main, new SettingsFragment()).commit();
         } else if (id == R.id.nav_logout) {
 
         } else if (id == R.id.nav_vittne) {
-
+            fragmentManager.beginTransaction().replace(R.id.main, new VittneFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
