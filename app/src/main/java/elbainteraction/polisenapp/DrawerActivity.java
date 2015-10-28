@@ -1,6 +1,7 @@
 package elbainteraction.polisenapp;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -88,7 +89,9 @@ public class DrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_installning) {
             fragmentManager.beginTransaction().replace(R.id.main, new SettingsFragment()).commit();
         } else if (id == R.id.nav_logout) {
-
+            //currently logging in instead of out, fix later
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_vittne) {
             fragmentManager.beginTransaction().replace(R.id.main, new VittneFragment()).commit();
         }

@@ -17,8 +17,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add("Page 1", TestFragment.class)
-                .add("Page 2", TestFragment.class)
+                .add("BankID", LoginBankidFragment.class)
+                .add("Lösenord", LoginPasswordFragment.class)
                 .create());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
