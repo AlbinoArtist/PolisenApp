@@ -15,7 +15,7 @@
     <item android:title="Konto">
         <menu>
             <item android:id="@+id/nav_installning" android:icon="@drawable/ic_settings_black_24dp"
-                android:title="Installningar" />
+                android:title="Inställningar" />
             <item android:id="@+id/nav_logout" android:icon="@drawable/ic_logout_black_24dp"
                 android:title="Logga Ut" />
         </menu>
