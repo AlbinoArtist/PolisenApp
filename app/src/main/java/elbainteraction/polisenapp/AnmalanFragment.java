@@ -1,10 +1,15 @@
 package elbainteraction.polisenapp;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.FloatingActionButton;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +23,7 @@ import android.view.ViewGroup;
  * Use the {@link AnmalanFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AnmalanFragment extends Fragment {
+public class AnmalanFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
@@ -76,6 +81,26 @@ public class AnmalanFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.add_anmalan_button:
+                addAnmalan(v);
+                break;
+
+        }
+    }
+
+    private void addAnmalan(View v) {
+        getActivity().getWindow().setExitTransition(new Fade());
+
+        Intent intent = new Intent(getActivity().getBaseContext(),AddAnmalanActivity.class);
+        startActivity(intent,
+                ActivityOptions
+                        .makeSceneTransitionAnimation(getActivity()).toBundle());
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -91,4 +116,11 @@ public class AnmalanFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        FloatingActionButton f = (FloatingActionButton) getActivity().findViewById(R.id.add_anmalan_button);
+        f.setOnClickListener(this);
+
+    }
 }
