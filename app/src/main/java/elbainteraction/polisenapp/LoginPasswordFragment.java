@@ -1,12 +1,17 @@
 package elbainteraction.polisenapp;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -68,8 +73,25 @@ public class LoginPasswordFragment extends Fragment {
     }
 
     // TODO: Get p-number and password and hook method into UI event
-    public void login() {
+    public void login(View view) {
+        EditText pNumberText = (EditText) getView().findViewById(R.id.editpersonnummer);
+        String pNumber = pNumberText.getText().toString();
 
+        EditText pWordText = (EditText) getView().findViewById(R.id.editpersonnummer);
+        String pWord = pWordText.getText().toString();
+
+        //login successful
+        if( pNumber.equals("197001011234") && pWord.equals("1234")){
+            Toast.makeText(getContext(), "Inloggning lyckades, HURRA HURRA.", Toast.LENGTH_LONG);
+
+            SharedPreferences mPrefs = new MikesAss().getPreferenceManager().getSharedPreferences();
+            SharedPreferences.Editor mEditor = mPrefs.edit();
+            mEditor.putBoolean("Logged in", true).commit();
+
+        }
+        else { //login not successful.
+            Toast.makeText(getContext(), "Fel personnummer eller lösenord.", Toast.LENGTH_LONG);
+        }
     }
 
     @Override
@@ -94,4 +116,7 @@ public class LoginPasswordFragment extends Fragment {
     }
 
 
+    public class MikesAss extends PreferenceFragment {
+
+    }
 }

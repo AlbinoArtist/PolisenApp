@@ -2,11 +2,8 @@ package elbainteraction.polisenapp;
 
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -22,22 +20,9 @@ public class DrawerActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main, new SenasteFragment()).commit();
-
+        initiateDrawerActivity();
 
     }
 
@@ -91,6 +76,7 @@ public class DrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             //currently logging in instead of out, fix later
             Intent intent = new Intent(this, LoginActivity.class);
+            intent.putExtra("caller", "LoginActivity");
             startActivity(intent);
         } else if (id == R.id.nav_vittne) {
             fragmentManager.beginTransaction().replace(R.id.main, new VittneFragment()).commit();
@@ -99,6 +85,51 @@ public class DrawerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+
+
+
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        initiateDrawerActivity();
+    }
+
+
+
+    private void initiateDrawerActivity(){
+
+        SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
+        boolean loggedIn = mPrefs.getBoolean("Logged in", false);
+
+
+        if (loggedIn){
+            setContentView(R.layout.activity_drawer_logged_in);
+        } else {
+            setContentView(R.layout.activity_drawer_logged_out);
+        }
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.main, new SenasteFragment()).commit();
+
+
+
     }
 
 
