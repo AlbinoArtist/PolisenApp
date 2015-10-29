@@ -74,7 +74,7 @@ public class DrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_installning) {
             fragmentManager.beginTransaction().replace(R.id.main, new SettingsFragment()).commit();
         } else if (id == R.id.nav_login) {
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, LogActivity.class));
         } else if (id == R.id.nav_logout) {
 
             SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
@@ -91,21 +91,16 @@ public class DrawerActivity extends AppCompatActivity
         return true;
     }
 
-
     @Override
     public void onResume(){
         super.onResume();
-
         initiateDrawerActivity();
     }
-
-
 
     private void initiateDrawerActivity(){
 
         SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
         boolean loggedIn = mPrefs.getBoolean("Logged in", false);
-
 
         if (loggedIn){
             setContentView(R.layout.activity_drawer_logged_in);
