@@ -73,12 +73,16 @@ public class DrawerActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.main, new SenasteFragment()).commit();
         } else if (id == R.id.nav_installning) {
             fragmentManager.beginTransaction().replace(R.id.main, new SettingsFragment()).commit();
+        } else if (id == R.id.nav_login) {
+            startActivity(new Intent(this, LoginActivity.class));
         } else if (id == R.id.nav_logout) {
-            //currently logging in instead of out, fix later
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.putExtra("caller", "LoginActivity");
-            startActivity(intent);
-        } else if (id == R.id.nav_vittne) {
+
+            SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
+            SharedPreferences.Editor mEditor = mPrefs.edit();
+            mEditor.putBoolean("Logged in", false).commit();
+
+            initiateDrawerActivity();
+        }else if (id == R.id.nav_vittne) {
             fragmentManager.beginTransaction().replace(R.id.main, new VittneFragment()).commit();
         }
 

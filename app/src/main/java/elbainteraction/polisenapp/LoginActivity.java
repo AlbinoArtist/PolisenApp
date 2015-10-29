@@ -50,23 +50,19 @@ public class LoginActivity extends AppCompatActivity {
         EditText pWordText = (EditText) findViewById(R.id.editpassword);
         String pWord = pWordText.getText().toString();
 
-        SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
-        SharedPreferences.Editor mEditor = mPrefs.edit();
-        mEditor.putBoolean("Logged in", false).commit();
-
 
         //login successful
-        if( pNumber.equals("197001011234") && pWord.equals("1234")){
+        if (pNumber.equals("197001011234") && pWord.equals("1234")) {
             Toast.makeText(getApplicationContext(), "Inloggning lyckades, HURRA HURRA.", Toast.LENGTH_LONG).show();
 
-
+            SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
+            SharedPreferences.Editor mEditor = mPrefs.edit();
             mEditor.putBoolean("Logged in", true).commit();
 
             Intent intent = new Intent(this, DrawerActivity.class);
             startActivity(intent);
 
-        }
-        else { //login not successful.
+        } else { //login not successful.
             Toast.makeText(getApplicationContext(), "Fel personnummer eller lösenord.", Toast.LENGTH_LONG).show();
         }
 
