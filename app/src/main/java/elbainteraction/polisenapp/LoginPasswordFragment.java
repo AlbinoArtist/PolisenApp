@@ -72,7 +72,7 @@ public class LoginPasswordFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_login_password, container, false);
     }
 
-    // TODO: Get p-number and password and hook method into UI event
+    /*
     public void login(View view) {
         EditText pNumberText = (EditText) getView().findViewById(R.id.editpersonnummer);
         String pNumber = pNumberText.getText().toString();
@@ -93,6 +93,7 @@ public class LoginPasswordFragment extends Fragment {
             Toast.makeText(getContext(), "Fel personnummer eller lösenord.", Toast.LENGTH_LONG);
         }
     }
+    */
 
     @Override
     public void onDetach() {
