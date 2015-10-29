@@ -24,9 +24,15 @@
         </activity>
         <activity
             android:name=".TestAnmalanActivity"
-            android:label="@string/title_activity_test_anmalan"
-            >
-
+            android:label="@string/title_activity_test_anmalan" >
+        </activity>
+        <activity
+            android:name=".NyAnmalanActivity"
+            android:label="@string/title_activity_ny_anmalan"
+            android:parentActivityName=".DrawerActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="elbainteraction.polisenapp.DrawerActivity" />
         </activity>
     </application>
 

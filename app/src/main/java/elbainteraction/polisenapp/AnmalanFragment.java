@@ -1,6 +1,5 @@
 package elbainteraction.polisenapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -104,7 +103,7 @@ public class AnmalanFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case(R.id.ny_anmalan_button):
-                getActivity().startActivity(new Intent(getActivity(), TestAnmalanActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), NyAnmalanActivity.class));
                 break;
         }
     }
