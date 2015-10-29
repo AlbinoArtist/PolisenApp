@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="crimes">
+        <item>Stöld av fordon</item>
+        <item>Annan stöld, förlust, inbrott</item>
+        <item>Kontokortsbedrägeri</item>
+    </string-array>
+</resources>

@@ -1,5 +1,6 @@
 package elbainteraction.polisenapp;
 
+import android.app.Activity;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -17,8 +20,7 @@ public class NyAnmalanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_anmalan);
-
+        setContentView(R.layout.activity_ny_anmalan);
 
 
         ShapeDrawable drawable = new ShapeDrawable(new OvalShape());
@@ -31,8 +33,6 @@ public class NyAnmalanActivity extends AppCompatActivity {
                 actionA.setTitle("Action A clicked");
             }
         });
-
-
 
 
     }
