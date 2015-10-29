@@ -1,0 +1,38 @@
+<android.support.design.widget.AppBarLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:theme="@style/AppTheme.AppBarOverlay"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_polisen_logo_notext"
+                android:id="@+id/imageView2"
+
+
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/polis_text"
+                android:layout_marginRight="5dp"
+
+                android:layout_marginTop="4dp" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_polisen_logo_textonly"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/polis_text" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>
