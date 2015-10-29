@@ -25,6 +25,7 @@ public class AddAnmalanActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //hora
     }
 
 }
