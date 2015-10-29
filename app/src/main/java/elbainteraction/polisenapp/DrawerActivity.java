@@ -1,11 +1,13 @@
 package elbainteraction.polisenapp;
 
+import android.app.ActivityOptions;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.transition.Fade;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -92,8 +94,12 @@ public class DrawerActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.main, new SettingsFragment()).commit();
         } else if (id == R.id.nav_logout) {
             //currently logging in instead of out, fix later
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            getWindow().setExitTransition(new Fade());
+
+            Intent intent = new Intent(getBaseContext(),LoginActivity.class);
+            startActivity(intent,
+                    ActivityOptions
+                            .makeSceneTransitionAnimation(this).toBundle());
         } else if (id == R.id.nav_vittne) {
             fragmentManager.beginTransaction().replace(R.id.main, new VittneFragment()).commit();
         }
