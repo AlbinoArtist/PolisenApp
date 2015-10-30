@@ -22,20 +22,20 @@ public class SenasteAdapter extends RecyclerView.Adapter<SenasteAdapter.ViewHold
         super();
         mItems = new ArrayList<SenasteItem>();
         SenasteItem senasteItem = new SenasteItem();
-        senasteItem.setName("Senaste 1");
+        senasteItem.setName("Långa bussköer");
         senasteItem.setDes("Trots avstängda vägar och ändrade rutter råder det fortfarande långa bussköer och trafikkaos i Lund.");
         senasteItem.setThumbnail(R.drawable.lund_bussar);
         mItems.add(senasteItem);
 
         senasteItem = new SenasteItem();
-        senasteItem.setName("Senaste 2");
+        senasteItem.setName("Olycka centrala Lund");
         senasteItem.setDes("En man i 65-årsålder omkom och tre kvinnor skadades efter att de blivit påkörda av en buss utanför Centralstationen i Lund på fredagskvällen. " +
                 "Olyckan inträffade efter att hett vatten strömmat upp ur en sprucken ledning och lagt en tät dimma över staden.");
         senasteItem.setThumbnail(R.drawable.lundvattenlacka);
         mItems.add(senasteItem);
 
         senasteItem = new SenasteItem();
-        senasteItem.setName("Senaste 3");
+        senasteItem.setName("Ambulans på plats");
         senasteItem.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
                 "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.");
         senasteItem.setThumbnail(R.drawable.ambulans);
