@@ -1,27 +1,30 @@
-package elbainteraction.polisenapp;
+package elbainteraction.polisenapp.AnmalanPackage;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import elbainteraction.polisenapp.R;
+import elbainteraction.polisenapp.nyAnmalanPackage.NyAnmalanActivity;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AnsokanFragment.OnFragmentInteractionListener} interface
+ * {@link AnmalanFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AnsokanFragment#newInstance} factory method to
+ * Use the {@link AnmalanFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AnsokanFragment extends Fragment {
-
+public class AnmalanFragment extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
@@ -34,15 +37,15 @@ public class AnsokanFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AnsokanFragment.
+     * @return A new instance of fragment AnmalanFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AnsokanFragment newInstance(String param1, String param2) {
-        AnsokanFragment fragment = new AnsokanFragment();
+    public static AnmalanFragment newInstance(String param1, String param2) {
+        AnmalanFragment fragment = new AnmalanFragment();
         return fragment;
     }
 
-    public AnsokanFragment() {
+    public AnmalanFragment() {
         // Required empty public constructor
     }
 
@@ -55,7 +58,7 @@ public class AnsokanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ansokan, container, false);
+        return inflater.inflate(R.layout.fragment_anmalan, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -85,6 +88,9 @@ public class AnsokanFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FloatingActionButton f =(FloatingActionButton) getView().findViewById(R.id.ny_anmalan_button);
+        f.setOnClickListener(this);
+
 
         mRecyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -92,8 +98,17 @@ public class AnsokanFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new AnsokningarAdapter();
+        mAdapter = new AnmalanAdapter();
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case(R.id.ny_anmalan_button):
+                getActivity().startActivity(new Intent(getActivity(), NyAnmalanActivity.class));
+                break;
+        }
     }
 
     /**
@@ -110,5 +125,6 @@ public class AnsokanFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
 
 }

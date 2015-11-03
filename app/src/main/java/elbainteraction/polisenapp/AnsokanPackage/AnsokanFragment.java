@@ -1,31 +1,33 @@
-package elbainteraction.polisenapp;
+package elbainteraction.polisenapp.AnsokanPackage;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import elbainteraction.polisenapp.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SenasteFragment.OnFragmentInteractionListener} interface
+ * {@link AnsokanFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SenasteFragment#newInstance} factory method to
+ * Use the {@link AnsokanFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SenasteFragment extends Fragment {
+public class AnsokanFragment extends Fragment {
+
 
     private OnFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-
 
     /**
      * Use this factory method to create a new instance of
@@ -33,15 +35,15 @@ public class SenasteFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AnmalanFragment.
+     * @return A new instance of fragment AnsokanFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SenasteFragment newInstance(String param1, String param2) {
-        SenasteFragment fragment = new SenasteFragment();
+    public static AnsokanFragment newInstance(String param1, String param2) {
+        AnsokanFragment fragment = new AnsokanFragment();
         return fragment;
     }
 
-    public SenasteFragment() {
+    public AnsokanFragment() {
         // Required empty public constructor
     }
 
@@ -54,7 +56,7 @@ public class SenasteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_senaste, container, false);
+        return inflater.inflate(R.layout.fragment_ansokan, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,7 +93,7 @@ public class SenasteFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new SenasteAdapter();
+        mAdapter = new AnsokningarAdapter();
         mRecyclerView.setAdapter(mAdapter);
     }
 

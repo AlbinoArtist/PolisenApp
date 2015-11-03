@@ -1,4 +1,4 @@
-package elbainteraction.polisenapp;
+package elbainteraction.polisenapp.AnmalanPackage;
 
 /**
  * Created by Alexander on 2015-10-29.
