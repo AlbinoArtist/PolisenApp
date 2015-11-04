@@ -12,7 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import elbainteraction.polisenapp.AnmalanPackage.AnmalanFragment;
+import elbainteraction.polisenapp.AnsokanPackage.AnsokanFragment;
+import elbainteraction.polisenapp.senastePackage.SenasteFragment;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{

@@ -1,7 +1,6 @@
-package elbainteraction.polisenapp;
+package elbainteraction.polisenapp.senastePackage;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import elbainteraction.polisenapp.R;
 
 /**
  * Created by Alexander on 2015-10-29.

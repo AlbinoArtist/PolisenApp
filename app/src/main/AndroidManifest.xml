@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="elbainteraction.polisenapp" >
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -31,7 +32,7 @@
             android:label="@string/title_activity_test_anmalan" >
         </activity>
         <activity
-            android:name=".NyAnmalanActivity"
+            android:name=".nyAnmalanPackage.NyAnmalanActivity"
             android:label="@string/title_activity_ny_anmalan"
             android:parentActivityName=".DrawerActivity" >
             <meta-data

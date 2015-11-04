@@ -1,55 +1,56 @@
-package elbainteraction.polisenapp;
+package elbainteraction.polisenapp.AnsokanPackage;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import elbainteraction.polisenapp.R;
+
 /**
  * Created by Alexander on 2015-10-29.
  */
-public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHolder> {
+public class AnsokningarAdapter extends RecyclerView.Adapter<AnsokningarAdapter.ViewHolder> {
 
-    List<AnmalanItem> mItems;
+    List<AnsokningarItem> mItems;
 
-    public AnmalanAdapter() {
+    public AnsokningarAdapter() {
         super();
-        mItems = new ArrayList<AnmalanItem>();
-        AnmalanItem anmalan = new AnmalanItem();
-        anmalan.setName("Anmälan 1");
-        anmalan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
+        mItems = new ArrayList<AnsokningarItem>();
+        AnsokningarItem ansokan = new AnsokningarItem();
+        ansokan.setName("Ansökan 1");
+        ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
                 "ut labore et dolore magna aliqua. Ut enim ad minim veniam.");
-        mItems.add(anmalan);
+        mItems.add(ansokan);
 
-        anmalan = new AnmalanItem();
-        anmalan.setName("Anmälan 2");
-        anmalan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
+        ansokan = new AnsokningarItem();
+        ansokan.setName("Ansökan 2");
+        ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
                 "ut labore et dolore magna aliqua.");
-        mItems.add(anmalan);
+        mItems.add(ansokan);
 
-        anmalan = new AnmalanItem();
-        anmalan.setName("Anmälan 3");
-        anmalan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
+        ansokan = new AnsokningarItem();
+        ansokan.setName("Ansökan 3");
+        ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
                 "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.");
-        mItems.add(anmalan);
+        mItems.add(ansokan);
 
-        anmalan = new AnmalanItem();
-        anmalan.setName("Anmälan 3");
-        anmalan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
+        ansokan = new AnsokningarItem();
+        ansokan.setName("Ansökan 3");
+        ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
                 "ut labore et dolore magna aliqua. Ut enim ad minim veniam.");
-        mItems.add(anmalan);
+        mItems.add(ansokan);
 
 
-        anmalan = new AnmalanItem();
-        anmalan.setName("Anmälan 4");
-        anmalan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
+        ansokan = new AnsokningarItem();
+        ansokan.setName("Ansökan 4");
+        ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
                 "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.");
-        mItems.add(anmalan);
+        mItems.add(ansokan);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        AnmalanItem nature = mItems.get(i);
+        AnsokningarItem nature = mItems.get(i);
         viewHolder.tvNature.setText(nature.getName());
         viewHolder.tvDesNature.setText(nature.getDes());
     }
@@ -84,4 +85,3 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
         }
     }
 }
-

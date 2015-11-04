@@ -1,11 +1,12 @@
-package elbainteraction.polisenapp;
+package elbainteraction.polisenapp.senastePackage;
 
 /**
  * Created by Alexander on 2015-10-29.
  */
-public class AnsokningarItem {
+public class SenasteItem {
     private String mName;
     private String mDes;
+    private int mThumbnail;
 
     public String getName() {
         return mName;
@@ -22,4 +23,13 @@ public class AnsokningarItem {
     public void setDes(String des) {
         this.mDes = des;
     }
+
+    public int getThumbnail() {
+        return mThumbnail;
+    }
+
+    public void setThumbnail(int thumbnail) {
+        this.mThumbnail = thumbnail;
+    }
+
 }
