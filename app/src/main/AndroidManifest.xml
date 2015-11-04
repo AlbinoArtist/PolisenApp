@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="elbainteraction.polisenapp" >
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -32,7 +33,7 @@
             android:label="@string/title_activity_test_anmalan" >
         </activity>
         <activity
-            android:name=".nyAnmalanPackage.NyAnmalanActivity"
+            android:name=".AnmalanPackage.nyAnmalanPackage.NewAnmalanActivity"
             android:label="@string/title_activity_ny_anmalan"
             android:parentActivityName=".DrawerActivity" >
             <meta-data
@@ -47,6 +48,51 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="elbainteraction.polisenapp.DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".AnmalanPackage.EditReportPackage.EditReportActivity"
+            android:label="@string/title_activity_edit_report"
+            android:parentActivityName=".DrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="elbainteraction.polisenapp.DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".AnmalanPackage.EditReportPackage.StolenListActivity"
+            android:label="@string/title_activity_stolen_list"
+            android:parentActivityName=".AnmalanPackage.EditReportPackage.EditReportActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity" />
+        </activity>
+        <activity
+            android:name=".AnmalanPackage.EditReportPackage.CulpritListActivity"
+            android:label="@string/title_activity_culprit_list"
+            android:parentActivityName=".AnmalanPackage.EditReportPackage.EditReportActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity" />
+        </activity>
+        <activity
+            android:name=".AnmalanPackage.EditReportPackage.WittnessListActivity"
+            android:label="@string/title_activity_wittness_list"
+            android:parentActivityName=".AnmalanPackage.EditReportPackage.EditReportActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity" />
+        </activity>
+        <activity
+            android:name=".AnmalanPackage.EditReportPackage.EventListActivity"
+            android:label="@string/title_activity_event_list"
+            android:parentActivityName=".AnmalanPackage.EditReportPackage.EditReportActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity" />
         </activity>
     </application>
 

@@ -1,7 +1,5 @@
-package elbainteraction.polisenapp.nyAnmalanPackage;
+package elbainteraction.polisenapp.AnmalanPackage.nyAnmalanPackage;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -11,23 +9,15 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import elbainteraction.polisenapp.R;
 
-public class NyAnmalanActivity extends AppCompatActivity {
+public class NewAnmalanActivity extends AppCompatActivity {
 
     private static int RESULT_LOAD_IMAGE = 1;
 

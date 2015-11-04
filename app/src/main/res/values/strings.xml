@@ -13,4 +13,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_ny_anmalan">NyAnmalanActivity</string>
     <string name="title_activity_log">LogActivity</string>
+    <string name="title_activity_edit_report">EditReportActivity</string>
+    <string name="title_activity_stolen_list">StolenListActivity</string>
+    <string name="title_activity_culprit_list">CulpritListActivity</string>
+    <string name="title_activity_wittness_list">WittnessListActivity</string>
+    <string name="title_activity_event_list">EventListActivity</string>
 </resources>
