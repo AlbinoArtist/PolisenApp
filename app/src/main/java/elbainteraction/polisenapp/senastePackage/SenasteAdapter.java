@@ -88,7 +88,7 @@ public class SenasteAdapter extends RecyclerView.Adapter<SenasteAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             imgThumbnail = (ImageView)itemView.findViewById(R.id.img_thumbnail);
-            tvNature = (TextView)itemView.findViewById(R.id.tv_nature);
+            tvNature = (TextView)itemView.findViewById(R.id.brottstyp);
             tvDesNature = (TextView)itemView.findViewById(R.id.tv_des_nature);
         }
     }

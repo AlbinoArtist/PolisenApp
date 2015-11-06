@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import elbainteraction.polisenapp.R;
@@ -18,9 +17,11 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
 
     List<AnmalanItem> mItems;
 
-    public AnmalanAdapter() {
+    public AnmalanAdapter(List<AnmalanItem> mItems) {
         super();
-        mItems = new ArrayList<AnmalanItem>();
+
+        this.mItems = mItems;
+        /*
         AnmalanItem anmalan = new AnmalanItem();
         anmalan.setName("Anmälan 1");
         anmalan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
@@ -51,6 +52,7 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
         anmalan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
                 "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.");
         mItems.add(anmalan);
+        */
     }
 
     @Override
@@ -63,9 +65,10 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        AnmalanItem nature = mItems.get(i);
-        viewHolder.tvNature.setText(nature.getName());
-        viewHolder.tvDesNature.setText(nature.getDes());
+        AnmalanItem anmalanItem = mItems.get(i);
+        viewHolder.name.setText(anmalanItem.getName());
+        viewHolder.anmalanDescription.setText(anmalanItem.getDes());
+        viewHolder.brottstyp.setText(anmalanItem.getBrottsTyp());
     }
 
     @Override
@@ -75,13 +78,15 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView tvNature;
-        public TextView tvDesNature;
+        public TextView name;
+        public TextView anmalanDescription;
+        public TextView brottstyp;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvNature = (TextView)itemView.findViewById(R.id.tv_nature);
-            tvDesNature = (TextView)itemView.findViewById(R.id.tv_des_nature);
+            name = (TextView)itemView.findViewById(R.id.name);
+            anmalanDescription = (TextView)itemView.findViewById(R.id.anmalanDescription);
+            brottstyp = (TextView)itemView.findViewById(R.id.brottstyp);
         }
     }
 }

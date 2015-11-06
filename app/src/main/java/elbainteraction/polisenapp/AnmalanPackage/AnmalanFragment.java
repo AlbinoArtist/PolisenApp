@@ -8,9 +8,16 @@ import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import elbainteraction.polisenapp.R;
 import elbainteraction.polisenapp.AnmalanPackage.nyAnmalanPackage.NewAnmalanActivity;
@@ -30,6 +37,7 @@ public class AnmalanFragment extends Fragment implements View.OnClickListener {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+    private List<AnmalanItem> anmalanItemList;
 
     /**
      * Use this factory method to create a new instance of
@@ -98,14 +106,35 @@ public class AnmalanFragment extends Fragment implements View.OnClickListener {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new AnmalanAdapter();
+        anmalanItemList = new ArrayList<AnmalanItem>();
+        loadSavedAnmalanList();
+        mAdapter = new AnmalanAdapter(anmalanItemList);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void loadSavedAnmalanList(){
+
+
+        try {
+            FileInputStream fis = getActivity().openFileInput("SavedAnmalanList.txt");
+            ObjectInputStream is = new ObjectInputStream(fis);
+
+            anmalanItemList = (ArrayList<AnmalanItem>) is.readObject();
+            is.close();
+            fis.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case(R.id.ny_anmalan_button):
+
+
                 getActivity().startActivity(new Intent(getActivity(), NewAnmalanActivity.class));
                 break;
         }

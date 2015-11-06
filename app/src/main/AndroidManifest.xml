@@ -94,6 +94,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity" />
         </activity>
+        <activity
+            android:name=".UploadPictureActivity"
+            android:label="@string/title_activity_upload_picture"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

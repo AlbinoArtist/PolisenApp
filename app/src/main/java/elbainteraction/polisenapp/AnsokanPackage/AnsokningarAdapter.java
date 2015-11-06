@@ -80,7 +80,7 @@ public class AnsokningarAdapter extends RecyclerView.Adapter<AnsokningarAdapter.
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvNature = (TextView)itemView.findViewById(R.id.tv_nature);
+            tvNature = (TextView)itemView.findViewById(R.id.brottstyp);
             tvDesNature = (TextView)itemView.findViewById(R.id.tv_des_nature);
         }
     }
