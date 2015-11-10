@@ -1,0 +1,183 @@
+<!--Change layout visibility to gone. -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="@dimen/text_margin"
+    android:id="@+id/add_new_container"
+    android:visibility="gone"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:layout_marginTop="-0dp">
+    <!--Försäkringsinformation-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/input.header.foremal"
+        android:textSize="@dimen/header_text_size"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAllCaps="true"
+        android:scaleX="0"
+        android:scaleY="0"
+        />
+    <!-- Text Föremålsspinner-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/hint.foremal"
+        android:id="@+id/input.foremal"
+        android:layout_marginLeft="5dp"/>
+
+
+
+    <!--Fabrikat -->
+    <android.support.design.widget.TextInputLayout android:scaleX="0"
+        android:scaleY="0" android:id="@+id/input.layout.fabrikat" android:layout_width="match_parent" android:layout_height="wrap_content"
+
+        >
+        <EditText
+            android:id="@+id/input_fabrikat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.fabrikat"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+    <!--Typ -->
+    <android.support.design.widget.TextInputLayout android:scaleX="0"
+        android:scaleY="0" android:id="@+id/input.layout.typ" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.typ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.typ" />
+
+    </android.support.design.widget.TextInputLayout>
+    <!--Modell -->
+    <android.support.design.widget.TextInputLayout  android:scaleX="0"
+        android:scaleY="0" android:id="@+id/input.layout.modell" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.modell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.modell" />
+
+    </android.support.design.widget.TextInputLayout>
+    <!--Färg -->
+    <android.support.design.widget.TextInputLayout android:scaleX="0"
+        android:scaleY="0"  android:id="@+id/input.layout.farg" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.farg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.farg" />
+
+    </android.support.design.widget.TextInputLayout>
+    <!--Märkning och kännetecken -->
+    <android.support.design.widget.TextInputLayout android:scaleX="0"
+        android:scaleY="0"  android:id="@+id/input.layout.markning" android:layout_width="match_parent" android:layout_height="wrap_content"
+        >
+        <EditText
+            android:id="@+id/input.markning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.markning" />
+    </android.support.design.widget.TextInputLayout>
+    <!--Ramnummer-->
+    <android.support.design.widget.TextInputLayout android:scaleX="0"
+        android:scaleY="0"  android:id="@+id/input.layout.ramnummer" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.ramnummer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.ramnummer" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <!--Försäkringsinformation-->
+    <TextView
+        android:scaleX="0"
+        android:scaleY="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/input.header.forsakring"
+        android:textSize="@dimen/header_text_size"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAllCaps="true"/>
+    <!--Registrerad Hos -->
+    <android.support.design.widget.TextInputLayout android:scaleX="0"
+        android:scaleY="0"  android:id="@+id/input.layout.registrerad" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.registrerad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.registrerad" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout app:counterEnabled="true" android:scaleX="0"
+        android:scaleY="0"
+        app:counterMaxLength="10" android:id="@+id/input.layout.stoldnummer" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.stoldnummer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.stoldnummer"
+            />
+    </android.support.design.widget.TextInputLayout>
+    <!-- Text LåsSpinner-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/hint.last"
+        android:id="@+id/textView"
+        android:layout_marginLeft="5dp"
+        android:scaleX="0"
+        android:scaleY="0"
+        />
+
+    <!-- LåsSpinner-->
+    <Spinner
+        android:scaleX="0"
+        android:scaleY="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/las_choices"
+        android:minHeight="10dp"
+        android:background="@drawable/ripple_effect"
+        android:dropDownSelector="@drawable/ripple_effect"
+        ></Spinner>
+
+    <!-- Uppskappat värde-->
+    <android.support.design.widget.TextInputLayout android:scaleX="0"
+        android:scaleY="0"
+        android:id="@+id/input.layout.varde" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.varde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.varde"
+            />
+    </android.support.design.widget.TextInputLayout>
+    <!-- Skapa föremål-->
+    <Button
+        android:scaleX="0"
+        android:scaleY="0"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skapa föremål"
+        android:background="@android:color/holo_green_light"
+        android:onClick="onCreatePressed"/>
+
+
+</LinearLayout>
