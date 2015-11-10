@@ -180,8 +180,8 @@ public class StolenListActivity extends AppCompatActivity {
 
         //fabrikat
         tv = (TextView) findViewById(R.id.input_fabrikat);
-
-        bi.setBrand((String) tv.getText());
+        String s = (String) tv.getText();
+        if(!s.equals("")) bi.setBrand(s);
 
         //typ (mountainbike, kärringcykel osv.
         tv = (TextView) findViewById(R.id.input_typ);

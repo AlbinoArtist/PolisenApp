@@ -17,12 +17,16 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
 import elbainteraction.polisenapp.R;
 
 
 public class WittnessListActivity extends AppCompatActivity {
+
+    AnmalanItem anmalanItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,6 +167,40 @@ public class WittnessListActivity extends AppCompatActivity {
         animator.start();
 
         anim.removeAllListeners();
+
+        //create Witness and add information
+        Witness w = new Witness();
+        String s;
+        TextView tv;
+
+        //firstName
+        tv = (TextView) findViewById(R.id.input_firstname);
+        s = (String) tv.getText();
+        if(!s.equals("")) w.setFirstName(s);
+
+        //efternamn
+        tv = (TextView) findViewById(R.id.input_lastname);
+        s = (String) tv.getText();
+        if(!s.equals("")) w.setSurName(s);
+
+        //personnummer
+        tv = (TextView) findViewById(R.id.input_ssnumber);
+        s = (String) tv.getText();
+        if(!s.equals("")) w.setPersonNumber(s);
+
+        //phoneNumber
+        tv = (TextView) findViewById(R.id.input_phonenbr);
+        s = (String) tv.getText();
+        if(!s.equals("")) w.setPhoneNumber(s);
+
+        //email
+        tv = (TextView) findViewById(R.id.input_email);
+        s = (String) tv.getText();
+        if(!s.equals("")) w.setEmail(s);
+
+        // TODO: 2015-11-10 Create addWitness method in anmalanItem
+        anmalanItem.addWitness(w);
+
 
     }
 
