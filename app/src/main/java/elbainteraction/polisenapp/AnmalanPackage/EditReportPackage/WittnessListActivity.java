@@ -199,7 +199,7 @@ public class WittnessListActivity extends AppCompatActivity {
         if(!s.equals("")) w.setEmail(s);
 
         // TODO: 2015-11-10 Create addWitness method in anmalanItem
-        anmalanItem.addWitness(w);
+        //anmalanItem.addWitness(w);
 
 
     }

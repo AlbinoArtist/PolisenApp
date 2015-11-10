@@ -1,6 +1,9 @@
 package elbainteraction.polisenapp.AnmalanPackage;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.BikeItem;
 
 /**
  * Created by Alexander on 2015-10-29.
@@ -11,12 +14,27 @@ public class AnmalanItem implements Serializable{
     private boolean submitted;
     private String mDes;
     private int id;
+    private ArrayList<BikeItem> stolenItems;
 
     public AnmalanItem(int id, String brottsTyp){
         this.brottsTyp = brottsTyp;
         this.id = id;
         submitted = false;
 
+    }
+
+    public void setStolenItem(BikeItem bikeItem){
+        if(stolenItems == null){
+            stolenItems = new ArrayList<BikeItem>();
+        }
+        stolenItems.add(bikeItem);
+    }
+
+    public ArrayList<BikeItem> getStolenItem(){
+        if(stolenItems == null){
+            stolenItems = new ArrayList<BikeItem>();
+        }
+        return stolenItems;
     }
 
     public int getId(){

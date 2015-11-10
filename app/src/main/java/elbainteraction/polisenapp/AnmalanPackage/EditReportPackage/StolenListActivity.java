@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -20,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import elbainteraction.polisenapp.AnmalanPackage.AnmalanAdapter;
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
 import elbainteraction.polisenapp.R;
 
@@ -27,13 +30,14 @@ import elbainteraction.polisenapp.R;
 public class StolenListActivity extends AppCompatActivity {
 
     private AnmalanItem anmalanItem;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bindViews();
-
-       anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
 
     }
 
@@ -50,7 +54,20 @@ public class StolenListActivity extends AppCompatActivity {
 
 
         private void bindViews() {
+
             setContentView(R.layout.activity_stolen_list);
+
+            anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
+            
+            mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+            mRecyclerView.setHasFixedSize(true);
+
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(mLayoutManager);
+
+            mAdapter = new StolenItemAdapter(anmalanItem.getStolenItem(), this);
+            mRecyclerView.setAdapter(mAdapter);
+
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             mFab = (FloatingActionButton)findViewById(R.id.reveal_add_fab);
@@ -131,7 +148,7 @@ public class StolenListActivity extends AppCompatActivity {
                 mFab.setVisibility(View.INVISIBLE);
                // findViewById(R.id.add_new_container).setBackgroundColor(getResources()
                  //       .getColor(R.color.colorAccent));
-                findViewById(R.id.text).setVisibility(View.GONE);
+
                 mAddNewContainer.setScaleX(1);
                 mAddNewContainer.setScaleY(1);
                 mAddNewContainer.setVisibility(View.VISIBLE);
@@ -185,7 +202,7 @@ public class StolenListActivity extends AppCompatActivity {
 
         //typ (mountainbike, kärringcykel osv.
         tv = (TextView) findViewById(R.id.input_typ);
-        String s = (String) tv.getText();
+        s = (String) tv.getText();
         if(!s.equals("")) bi.setType(s);
 
 
@@ -238,6 +255,8 @@ public class StolenListActivity extends AppCompatActivity {
         animator.start();
 
         anim.removeAllListeners();
+
+
 
     }
 
