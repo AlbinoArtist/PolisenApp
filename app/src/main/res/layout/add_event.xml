@@ -1,0 +1,248 @@
+<!--Change layout visibility to gone. -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="@dimen/text_margin"
+    android:id="@+id/add_new_container"
+    android:visibility="visible"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:layout_marginTop="-0dp">
+    <!--Vittnesbeskrivning-->
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/input.header.witness"
+        android:textSize="@dimen/header_text_size"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAllCaps="true"
+        android:scaleX="0"
+        android:scaleY="0"
+        />
+    <!-- Text Känd/Okänd-->
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/hint.knownculprit"
+        android:id="@+id/text.knownculprit"
+        android:layout_marginLeft="5dp"
+        android:scaleX="0"
+        android:scaleY="0"
+        />
+    <!--Känd/Okänd radiogroup -->
+        <RadioGroup
+            android:scaleY="0"
+            android:scaleX="0"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:id="@+id/radio.knownunknown">
+            <!-- Känd-->
+            <RadioButton
+                android:layout_weight="0.5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/input.radio.known"
+                android:button="@null"
+                android:drawableRight="?android:attr/listChoiceIndicatorSingle"
+                android:paddingRight="10dp"
+                android:id="@+id/radio.known"
+                />
+            <!-- OKänd-->
+            <RadioButton
+                android:layout_weight="0.5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/input.radio.unknown"
+                android:button="@null"
+                android:drawableRight="?android:attr/listChoiceIndicatorSingle"
+                android:paddingRight="10dp"
+                android:id="@+id/radio.unknown"
+                />
+        </RadioGroup>
+    <!-- Text Känd/Okänd-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/hint.sex"
+        android:id="@+id/text.sex"
+        android:layout_marginLeft="5dp"
+        android:scaleX="0"
+        android:scaleY="0"
+        />
+
+    <!-- Känd LinearLayout-->
+    <LinearLayout
+        android:scaleY="0"
+        android:scaleX="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout.linear.known"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <!--Förnamn -->
+        <android.support.design.widget.TextInputLayout android:scaleX="0"
+            android:scaleY="0" android:id="@+id/input.layout.fabrikat" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input.firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint.firstname"
+                android:inputType="textPersonName"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <!--Efternamn -->
+        <android.support.design.widget.TextInputLayout android:scaleX="0"
+            android:scaleY="0" android:id="@+id/input.layout.lastname" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input.lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint.lastname"
+                android:inputType="textPersonName"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <!--Personnummer -->
+        <android.support.design.widget.TextInputLayout android:scaleX="0"
+            android:scaleY="0" android:id="@+id/input.layout.ssnumber" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input.ssnumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint.ssnumber"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <!--Kontaktuppgifter-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/input.header.wittnesscontact"
+            android:textSize="@dimen/header_text_size"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAllCaps="true"
+            android:scaleX="0"
+            android:scaleY="0"
+            />
+        <!--Telefonnummer -->
+        <android.support.design.widget.TextInputLayout android:scaleX="0"
+            android:scaleY="0" android:id="@+id/input.layout.phonenbr" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input.phonenbr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint.phonenbr"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+        <!--Epost -->
+        <android.support.design.widget.TextInputLayout android:scaleX="0"
+            android:scaleY="0" android:id="@+id/input.layout.email" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input.email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint.email"
+                android:inputType="textEmailAddress"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+        <!-- Skapa vittne-->
+        <Button
+            android:scaleX="0"
+            android:scaleY="0"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lägg till gärningsman"
+            android:background="@android:color/holo_green_light"
+            android:onClick="onCreatePressed"/>
+
+        <!-- LÄGG ILL SPINNER MANNENNN! MED KÖN!!-->
+
+    </LinearLayout>
+
+    <!-- OKänd LinearLayout-->
+    <LinearLayout
+        android:scaleY="0"
+        android:scaleX="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout.linear.unknown"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <!--Spinner med kön! -->
+
+        <!--Längd -->
+        <android.support.design.widget.TextInputLayout android:scaleX="0"
+            android:scaleY="0" android:id="@+id/input.layout.height" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.height"
+            android:inputType="number"
+            android:maxLines="1"
+            />
+        </android.support.design.widget.TextInputLayout>
+        <!--Ålder -->
+        <android.support.design.widget.TextInputLayout android:scaleX="0"
+            android:scaleY="0" android:id="@+id/input.layout.age" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input.age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint.age"
+                android:inputType="number"
+                android:maxLines="1"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <!--Telefonnummer -->
+        <android.support.design.widget.TextInputLayout android:scaleX="0"
+            android:scaleY="0" android:id="@+id/input.layout.description" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input.description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint.description"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:minLines="5"
+                android:maxLines="15"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <!-- Skapa vittne-->
+        <Button
+            android:scaleX="0"
+            android:scaleY="0"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lägg till gärningsman"
+            android:background="@android:color/holo_green_light"
+            android:onClick="onCreatePressed"/>
+
+        </LinearLayout>
+
+
+
+
+
+</LinearLayout>

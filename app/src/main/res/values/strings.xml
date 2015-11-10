@@ -121,6 +121,20 @@
     <string name="hint.varde">Uppskattat värde i SEK</string>
     <string name="hint.ramnummer">Ramnummer</string>
     <string name="hint.foremal">Vad har blivit stulet?</string>
+    <string name="input.header.witness">Personbeskrivning</string>
+    <string name="hint.firstname">Förnamn</string>
+    <string name="hint.lastname">Efternamn</string>
+    <string name="hint.ssnumber">Personnummer</string>
+    <string name="input.header.wittnesscontact">Kontaktuppgifter</string>
+    <string name="hint.phonenbr">Telefonnummer</string>
+    <string name="hint.email">E-post</string>
+    <string name="hint.knownculprit">Är gärningsmannens identitet känd?</string>
+    <string name="input.radio.known">Känd gärnningsman</string>
+    <string name="input.radio.unknown">Okänd gärningsman</string>
+    <string name="hint.height">Uppskattad längd (cm)</string>
+    <string name="hint.age">Uppskattad ålder (år)</string>
+    <string name="hint.description">Signalament</string>
+    <string name="hint.sex">Kön</string>
     <string-array name="las_choices">
         <item>Låst</item>
         <item>Olåst</item>
@@ -130,5 +144,10 @@
     </string-array>
     <string-array name="foremal_choices">
         <item>Cykel</item>
+    </string-array>
+    <string-array name="sex">
+        <item>Man</item>
+        <item>Kvinna</item>
+        <item>Vet ej</item>
     </string-array>
 </resources>
