@@ -18,15 +18,20 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
 import elbainteraction.polisenapp.R;
 
 
 public class CulpritListActivity extends AppCompatActivity {
+
+    AnmalanItem anmalanItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,9 @@ public class CulpritListActivity extends AppCompatActivity {
 
         private boolean mRevealFlag;
         private float mFabSize;
+
+        //fullösning
+        private Spinner programSpinner;
 
 
         private void bindViews() {
@@ -65,8 +73,8 @@ public class CulpritListActivity extends AppCompatActivity {
             mAddNewContainer = (LinearLayout) findViewById(R.id.add_new_container);
 
 
-            Spinner programSpinner = new Spinner(this);
-            programSpinner.setPadding(0,5,0,5);
+            programSpinner = new Spinner(this);
+            programSpinner.setPadding(0, 5, 0, 5);
             ArrayAdapter<CharSequence> spinnerArrayAdapter = ArrayAdapter.createFromResource(this, R.array.sex, android.R.layout.simple_spinner_item);
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             // Apply the adapter to the spinner
@@ -197,6 +205,67 @@ public class CulpritListActivity extends AppCompatActivity {
         animator.start();
 
         anim.removeAllListeners();
+
+
+        //create Culprit and add info
+        RadioButton knownRadio = (RadioButton) findViewById(R.id.radio_known);
+        boolean known = knownRadio.isChecked();
+        Culprit c = new Culprit(known);
+        String s;
+        TextView tv;
+
+        //firstName
+        tv = (TextView) findViewById(R.id.input_firstname);
+        s = (String) tv.getText();
+        if(!s.equals("")) c.setFirstName(s);
+
+        //lastName
+        tv = (TextView) findViewById(R.id.input_lastname);
+        s = (String) tv.getText();
+        if(!s.equals("")) c.setSurName(s);
+
+        //personNumber
+        tv = (TextView) findViewById(R.id.input_ssnumber);
+        s = (String) tv.getText();
+        if(!s.equals("")) c.setPersonNumber(s);
+
+        //phonenumber
+        tv = (TextView) findViewById(R.id.input_phonenbr);
+        s = (String) tv.getText();
+        if(!s.equals("")) c.setPhoneNumber(s);
+
+        //email
+        tv = (TextView) findViewById(R.id.input_email);
+        s = (String) tv.getText();
+        if(!s.equals("")) c.setEmail(s);
+
+        //sex
+        s = programSpinner.getSelectedItem().toString();
+        if(!s.equals("")) c.setSex(s);
+
+        //length
+        tv = (TextView) findViewById(R.id.input_height);
+        s = (String) tv.getText();
+        if(!s.equals("")){
+            int length = Integer.parseInt((String) tv.getText());
+            c.setLength(length);
+        }
+
+        //age
+        tv = (TextView) findViewById(R.id.input_age);
+        s = (String) tv.getText();
+        if(!s.equals("")){
+            int age = Integer.parseInt((String) tv.getText());
+            c.setAge(age);
+        }
+
+        //signalement
+        tv = (TextView) findViewById(R.id.input_description);
+        s = (String) tv.getText();
+        if(!s.equals("")) c.setDescription(s);
+
+        // TODO: 2015-11-10 Add method addCulprit(Culprit c) to anmalanItem.
+        //anmalanItem.addCulprit(c);
 
     }
 
