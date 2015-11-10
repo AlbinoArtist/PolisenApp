@@ -11,14 +11,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanFragment;
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
 import elbainteraction.polisenapp.DrawerActivity;
 import elbainteraction.polisenapp.R;
+import me.drakeet.materialdialog.MaterialDialog;
 
 public class EditReportActivity extends AppCompatActivity {
 
-    AnmalanItem anmalanItem;
+    private AnmalanItem anmalanItem;
+    private MaterialDialog mMaterialDialog;
+    private ArrayList<AnmalanItem> anmalanItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +61,87 @@ public class EditReportActivity extends AppCompatActivity {
         intent.putExtra("anmalanFragment", 1);
         startActivity(intent);
 
+    }
+
+
+    public void dialogWindow(View v) {
+
+        mMaterialDialog = new MaterialDialog(this)
+                .setTitle("MaterialDialog")
+                .setMessage("Hello world!")
+                .setPositiveButton("Lämna in", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mMaterialDialog.dismiss();
+                        anmalanItem.setSubmitted();
+                        loadAnmalanList();
+                        saveAnmalanList(anmalanItem);
+                    }
+                })
+                .setNegativeButton("Avbryt", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mMaterialDialog.dismiss();
+                    }
+                });
+
+        mMaterialDialog.show();
+        mMaterialDialog.setTitle("Lämna in anmälan");
+        mMaterialDialog.show();
+        mMaterialDialog.setMessage("Vill du verkligen lämna in din anmälan till Polisen?");
+
+
+    }
+
+    public void loadAnmalanList() {
+
+        anmalanItemList = new ArrayList<AnmalanItem>();
+
+        try {
+            FileInputStream fis = openFileInput("SavedAnmalanList.txt");
+
+            ObjectInputStream is = new ObjectInputStream(fis);
+
+            anmalanItemList = (ArrayList<AnmalanItem>) is.readObject();
+
+            is.close();
+            fis.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveAnmalanList(AnmalanItem anmalanItem) {
+
+        AnmalanItem aItem;
+        for (int i = 0; i < anmalanItemList.size(); i++) {
+            aItem = anmalanItemList.get(i);
+
+            if (aItem.getId() == anmalanItem.getId()) {
+                anmalanItemList.set(i, anmalanItem);
+                break;
+            }
+        }
+
+
+        FileOutputStream fos = null;
+
+        try {
+            fos = openFileOutput("SavedAnmalanList.txt", MODE_PRIVATE);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            os.writeObject(anmalanItemList);
+            os.close();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //After save go to anmalan fragment
+        Intent intent = new Intent(this, DrawerActivity.class);
+        intent.putExtra("anmalanFragment", 1);
+        startActivity(intent);
     }
 
 

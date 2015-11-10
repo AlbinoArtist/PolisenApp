@@ -52,7 +52,7 @@
                 android:layout_alignParentStart="true" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -62,7 +62,7 @@
                 android:alpha="0.8"
                 android:textColor="#ff272727"
                 android:textSize="15dp"
-                android:text="Brottstyp"
+                android:text="Status"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
         </RelativeLayout>

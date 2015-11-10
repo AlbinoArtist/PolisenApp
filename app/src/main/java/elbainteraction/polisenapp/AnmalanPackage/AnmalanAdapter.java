@@ -77,7 +77,7 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         final AnmalanItem anmalanItem = mItems.get(i);
-        viewHolder.name.setText(anmalanItem.getName());
+        viewHolder.status.setText(anmalanItem.isSubmitted());
         viewHolder.anmalanDescription.setText(anmalanItem.getDes());
         viewHolder.brottstyp.setText(anmalanItem.getBrottsTyp());
         currentItem = mItems.get(i);
@@ -105,17 +105,17 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView name;
         public TextView anmalanDescription;
         public TextView brottstyp;
+        public TextView status;
         public View currentItemView;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.name);
             anmalanDescription = (TextView) itemView.findViewById(R.id.anmalanDescription);
             brottstyp = (TextView) itemView.findViewById(R.id.brottstyp);
+            status = (TextView) itemView.findViewById(R.id.status);
             currentItemView = itemView;
         }
     }

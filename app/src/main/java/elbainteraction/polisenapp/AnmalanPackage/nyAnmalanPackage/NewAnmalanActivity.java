@@ -32,6 +32,7 @@ import java.util.List;
 
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
 import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity;
+import elbainteraction.polisenapp.DrawerActivity;
 import elbainteraction.polisenapp.R;
 
 
@@ -52,6 +53,19 @@ public class NewAnmalanActivity extends AppCompatActivity{
         button = (FloatingActionButton) findViewById(R.id.confirm_anmalan_button);
         loadAnmalanList();
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     public void radioClick(View v){
@@ -63,6 +77,15 @@ public class NewAnmalanActivity extends AppCompatActivity{
 
         clickedRadio.setChecked(true);
         button.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, DrawerActivity.class);
+        intent.putExtra("anmalanFragment", 1);
+        startActivity(intent);
 
     }
 
@@ -78,8 +101,12 @@ public class NewAnmalanActivity extends AppCompatActivity{
             brottsTyp = "Kontokortsbedrägeri";
         }
 
-        AnmalanItem anmalanItem = new AnmalanItem(brottsTyp);
-
+        AnmalanItem anmalanItem;
+        if(anmalanItemList.size() > 0) {
+             anmalanItem = new AnmalanItem(anmalanItemList.get(anmalanItemList.size() - 1).getId() + 1, brottsTyp);
+        } else {
+             anmalanItem = new AnmalanItem(0, brottsTyp);
+        }
         saveAnmalanList(anmalanItem);
 
         Intent intent = new Intent(this, EditReportActivity.class);

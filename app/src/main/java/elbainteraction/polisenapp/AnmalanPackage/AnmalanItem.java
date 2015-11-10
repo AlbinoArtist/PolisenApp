@@ -8,11 +8,31 @@ import java.io.Serializable;
 public class AnmalanItem implements Serializable{
     private String mName;
     private String brottsTyp;
+    private boolean submitted;
     private String mDes;
+    private int id;
 
-    public AnmalanItem(String brottsTyp){
+    public AnmalanItem(int id, String brottsTyp){
         this.brottsTyp = brottsTyp;
+        this.id = id;
+        submitted = false;
 
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setSubmitted(){
+        submitted = true;
+    }
+
+    public String isSubmitted(){
+        if(submitted){
+            return "Inlämnad";
+        } else {
+            return "Ej inlämnad";
+        }
     }
 
     public String getName() {

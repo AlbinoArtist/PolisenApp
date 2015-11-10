@@ -1,6 +1,7 @@
 package elbainteraction.polisenapp.AnsokanPackage;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,16 +57,16 @@ public class AnsokningarAdapter extends RecyclerView.Adapter<AnsokningarAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.recycler_view_anmalan_item, viewGroup, false);
+                .inflate(R.layout.recycler_view_ansokningar_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        AnsokningarItem nature = mItems.get(i);
-        viewHolder.tvNature.setText(nature.getName());
-        viewHolder.tvDesNature.setText(nature.getDes());
+        AnsokningarItem ansokanItem = mItems.get(i);
+        viewHolder.ansokanNamn.setText(ansokanItem.getName());
+        viewHolder.ansokanDescription.setText(ansokanItem.getDes());
     }
 
     @Override
@@ -75,13 +76,13 @@ public class AnsokningarAdapter extends RecyclerView.Adapter<AnsokningarAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView tvNature;
-        public TextView tvDesNature;
+        public TextView ansokanNamn;
+        public TextView ansokanDescription;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvNature = (TextView)itemView.findViewById(R.id.brottstyp);
-            tvDesNature = (TextView)itemView.findViewById(R.id.tv_des_nature);
+            ansokanNamn = (TextView)itemView.findViewById(R.id.ansokanNamn);
+            ansokanDescription = (TextView)itemView.findViewById(R.id.ansokanDescription);
         }
     }
 }

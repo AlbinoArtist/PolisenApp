@@ -15,7 +15,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,7 +34,8 @@
         <activity
             android:name=".AnmalanPackage.nyAnmalanPackage.NewAnmalanActivity"
             android:label="@string/title_activity_ny_anmalan"
-            android:parentActivityName=".DrawerActivity" >
+            android:parentActivityName=".DrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="elbainteraction.polisenapp.DrawerActivity" />
