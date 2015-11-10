@@ -9,8 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateInterpolator;
@@ -19,35 +17,24 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
+import elbainteraction.polisenapp.R;
 
 
 public class StolenListActivity extends AppCompatActivity {
+
+    private AnmalanItem anmalanItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bindViews();
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return true;
-    }
+       anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
         private FloatingActionButton mFab;
@@ -186,6 +173,17 @@ public class StolenListActivity extends AppCompatActivity {
                 mFab.setTranslationY(newLoc.mY);
         }
     public void onCreatePressed(View v){
+
+        //Create stolenItem
+
+
+
+
+
+
+        //Add bikeItem to anmalanItem
+
+        //StolenItemLIst
         ViewPropertyAnimator animator = mAddNewContainer.animate()
                 .scaleY(0)
                 .setDuration(600)

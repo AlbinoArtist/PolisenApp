@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="@dimen/text_margin"
     android:id="@+id/add_new_container"
-    android:visibility="gone"
+    android:visibility="visible"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:layout_marginTop="-0dp">
     <!--Försäkringsinformation-->

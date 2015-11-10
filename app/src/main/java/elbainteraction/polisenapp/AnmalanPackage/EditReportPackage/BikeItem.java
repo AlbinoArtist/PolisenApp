@@ -1,4 +1,4 @@
-package com.example.elbainteraction.polisenapp.anmalanpackage.editreportpackage;
+package elbainteraction.polisenapp.AnmalanPackage.EditReportPackage;
 
 /**
  * Created by fbont on 2015-11-10.

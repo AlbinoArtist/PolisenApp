@@ -28,10 +28,6 @@
                 android:value="elbainteraction.polisenapp.DrawerActivity" />
         </activity>
         <activity
-            android:name=".TestAnmalanActivity"
-            android:label="@string/title_activity_test_anmalan" >
-        </activity>
-        <activity
             android:name=".AnmalanPackage.nyAnmalanPackage.NewAnmalanActivity"
             android:label="@string/title_activity_ny_anmalan"
             android:parentActivityName=".DrawerActivity"

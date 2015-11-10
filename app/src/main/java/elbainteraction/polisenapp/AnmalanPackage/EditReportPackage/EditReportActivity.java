@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanFragment;
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
+import elbainteraction.polisenapp.AnmalanPackage.nyAnmalanPackage.NewAnmalanActivity;
 import elbainteraction.polisenapp.DrawerActivity;
 import elbainteraction.polisenapp.R;
 import me.drakeet.materialdialog.MaterialDialog;
@@ -29,6 +30,7 @@ public class EditReportActivity extends AppCompatActivity {
     private AnmalanItem anmalanItem;
     private MaterialDialog mMaterialDialog;
     private ArrayList<AnmalanItem> anmalanItemList;
+    private TextView stulnaForemalButton, garningsManButon, vittnenButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,40 @@ public class EditReportActivity extends AppCompatActivity {
         anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
         TextView tv = (TextView) findViewById(R.id.textHeader);
         tv.setText("Anmälan: " + anmalanItem.getBrottsTyp());
+
+        stulnaForemalButton = (TextView) findViewById(R.id.stulnaForemal);
+        garningsManButon = (TextView) findViewById(R.id.garningsman);
+        vittnenButton = (TextView) findViewById(R.id.vittnen);
+
+        stulnaForemalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), StolenListActivity.class);
+                intent.putExtra("anmalanItem", anmalanItem);
+                startActivity(intent);
+            }
+        });
+
+        garningsManButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), CulpritListActivity.class));
+            }
+        });
+
+        vittnenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), WittnessListActivity.class));
+            }
+        });
+
+
+
     }
+
+
+
 
 
     @Override
