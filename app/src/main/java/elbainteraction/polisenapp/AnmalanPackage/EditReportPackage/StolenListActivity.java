@@ -175,13 +175,60 @@ public class StolenListActivity extends AppCompatActivity {
     public void onCreatePressed(View v){
 
         //Create stolenItem
+        BikeItem bi = new BikeItem();
+        TextView tv;
+
+        //fabrikat
+        tv = (TextView) findViewById(R.id.input_fabrikat);
+
+        bi.setBrand((String) tv.getText());
+
+        //typ (mountainbike, kärringcykel osv.
+        tv = (TextView) findViewById(R.id.input_typ);
+        String s = (String) tv.getText();
+        if(!s.equals("")) bi.setType(s);
 
 
+        //model
+        tv = (TextView) findViewById(R.id.input_modell);
+        s = (String) tv.getText();
+        if(!s.equals("")) bi.setModel(s);
 
+        //färg
+        tv = (TextView) findViewById(R.id.input_farg);
+        s = (String) tv.getText();
+        if(!s.equals("")) bi.setColor(s);
 
+        //maärkning
+        tv = (TextView) findViewById(R.id.input_markning);
+        s = (String) tv.getText();
+        if(!s.equals("")) bi.setBranding(s);
 
+        //ramnummer
+        tv = (TextView) findViewById(R.id.input_ramnummer);
+        s = (String) tv.getText();
+        if(!s.equals("")) bi.setFrameNumber(s);
+
+        //försäkringsföretag
+        tv = (TextView) findViewById(R.id.input_registrerad);
+        s = (String) tv.getText();
+        if(!s.equals("")) bi.setInsuranceCompany(s);
+
+        //stöldnummer
+        tv = (TextView) findViewById(R.id.input_stoldnummer);
+        s = (String) tv.getText();
+        if(!s.equals("")) bi.setStealNumber(s);
+
+        //värde
+        tv = (TextView) findViewById(R.id.input_varde);
+        s = (String) tv.getText();
+        if(!s.equals("")){
+            int value = Integer.parseInt((String) tv.getText());
+            bi.setValue(value);
+        }
 
         //Add bikeItem to anmalanItem
+        anmalanItem.setStolenItem(bi);
 
         //StolenItemLIst
         ViewPropertyAnimator animator = mAddNewContainer.animate()
