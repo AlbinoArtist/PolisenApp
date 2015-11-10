@@ -108,7 +108,7 @@ public class AnmalanFragment extends Fragment implements View.OnClickListener {
 
         anmalanItemList = new ArrayList<AnmalanItem>();
         loadSavedAnmalanList();
-        mAdapter = new AnmalanAdapter(anmalanItemList);
+        mAdapter = new AnmalanAdapter(anmalanItemList, getActivity());
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -129,16 +129,18 @@ public class AnmalanFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case(R.id.ny_anmalan_button):
 
-
                 getActivity().startActivity(new Intent(getActivity(), NewAnmalanActivity.class));
                 break;
         }
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

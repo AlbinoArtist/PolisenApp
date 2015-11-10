@@ -1,13 +1,20 @@
 package elbainteraction.polisenapp.AnmalanPackage;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
+import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity;
+import elbainteraction.polisenapp.AnmalanPackage.nyAnmalanPackage.NewAnmalanActivity;
 import elbainteraction.polisenapp.R;
 
 /**
@@ -15,12 +22,16 @@ import elbainteraction.polisenapp.R;
  */
 public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHolder> {
 
-    List<AnmalanItem> mItems;
+    private List<AnmalanItem> mItems;
+    private AnmalanItem currentItem;
+    private Activity activity;
 
-    public AnmalanAdapter(List<AnmalanItem> mItems) {
+
+    public AnmalanAdapter(List<AnmalanItem> mItems, Activity activity) {
         super();
 
         this.mItems = mItems;
+        this.activity = activity;
         /*
         AnmalanItem anmalan = new AnmalanItem();
         anmalan.setName("Anmälan 1");
@@ -65,10 +76,26 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        AnmalanItem anmalanItem = mItems.get(i);
+        final AnmalanItem anmalanItem = mItems.get(i);
         viewHolder.name.setText(anmalanItem.getName());
         viewHolder.anmalanDescription.setText(anmalanItem.getDes());
         viewHolder.brottstyp.setText(anmalanItem.getBrottsTyp());
+        currentItem = mItems.get(i);
+
+        viewHolder.currentItemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                //SKICKA ITEM TILL editREPORT
+                Intent intent = new Intent(activity, EditReportActivity.class);
+                intent.putExtra("anmalanItem", anmalanItem);
+                activity.startActivity(intent);
+
+            }
+
+        });
+
     }
 
     @Override
@@ -76,17 +103,20 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
         return mItems.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView name;
         public TextView anmalanDescription;
         public TextView brottstyp;
+        public View currentItemView;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView)itemView.findViewById(R.id.name);
-            anmalanDescription = (TextView)itemView.findViewById(R.id.anmalanDescription);
-            brottstyp = (TextView)itemView.findViewById(R.id.brottstyp);
+            name = (TextView) itemView.findViewById(R.id.name);
+            anmalanDescription = (TextView) itemView.findViewById(R.id.anmalanDescription);
+            brottstyp = (TextView) itemView.findViewById(R.id.brottstyp);
+            currentItemView = itemView;
         }
     }
 }

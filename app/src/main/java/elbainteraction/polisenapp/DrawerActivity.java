@@ -70,6 +70,7 @@ public class DrawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_anmalan) {
             fragmentManager.beginTransaction().replace(R.id.main, new AnmalanFragment()).commit();
+
         } else if (id == R.id.nav_ansokan) {
             fragmentManager.beginTransaction().replace(R.id.main, new AnsokanFragment()).commit();
         } else if (id == R.id.nav_aktuellt) {
@@ -98,7 +99,14 @@ public class DrawerActivity extends AppCompatActivity
     public void onResume(){
         super.onResume();
         initiateDrawerActivity();
+
+        if(getIntent().getIntExtra("anmalanFragment", 0) == 1){
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.main, new AnmalanFragment()).commit();
+        }
+
     }
+
 
     private void initiateDrawerActivity(){
 

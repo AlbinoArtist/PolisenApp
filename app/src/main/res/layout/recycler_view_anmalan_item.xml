@@ -14,9 +14,9 @@
         card_view:cardElevation="0.01dp"
         android:layout_marginBottom="0dp">
         <RelativeLayout
-            android:id="@+id/top_layout"
             android:layout_width="fill_parent"
-            android:layout_height="150dp">
+            android:layout_height="150dp"
+            android:id="@+id/cardItem">
 
             <TextView
                 android:id="@+id/brottstyp"
