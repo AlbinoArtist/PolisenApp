@@ -1,9 +1,11 @@
 package elbainteraction.polisenapp.AnmalanPackage.EditReportPackage;
 
+import java.io.Serializable;
+
 /**
  * Created by fbont on 2015-11-10.
  */
-public class Culprit {
+public class Culprit implements Serializable{
 
     private boolean known;
     private String firstName, surName, personNumber, sex;

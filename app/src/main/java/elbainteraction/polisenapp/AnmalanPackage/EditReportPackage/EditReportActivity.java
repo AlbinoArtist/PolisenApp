@@ -70,7 +70,9 @@ public class EditReportActivity extends AppCompatActivity {
         garningsManButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), CulpritListActivity.class));
+                Intent intent = new Intent(getApplicationContext(), CulpritListActivity.class);
+                intent.putExtra("anmalanItem", anmalanItem);
+                startActivity(intent);
             }
         });
 

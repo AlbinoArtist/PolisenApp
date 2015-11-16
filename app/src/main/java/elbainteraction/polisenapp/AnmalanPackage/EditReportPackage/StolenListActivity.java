@@ -22,11 +22,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import elbainteraction.polisenapp.AnmalanPackage.AnmalanAdapter;
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
-import elbainteraction.polisenapp.DrawerActivity;
 import elbainteraction.polisenapp.R;
 
 
@@ -69,7 +66,7 @@ public class StolenListActivity extends AppCompatActivity {
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(mLayoutManager);
 
-            mAdapter = new StolenItemAdapter(anmalanItem.getStolenItem(), this);
+            mAdapter = new StolenItemAdapter(anmalanItem.getStolenItems(), this);
             mRecyclerView.setAdapter(mAdapter);
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -159,7 +156,6 @@ public class StolenListActivity extends AppCompatActivity {
             super.onBackPressed();
             Intent intent = new Intent(this, EditReportActivity.class);
             intent.putExtra("anmalanItem", anmalanItem);
-            Log.d("HEJJJ", "HHHHHHHEEE");
             startActivity(intent);
         } else {
             //StolenItemLIst
