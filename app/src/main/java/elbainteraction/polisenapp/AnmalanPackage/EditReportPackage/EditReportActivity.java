@@ -85,9 +85,15 @@ public class EditReportActivity extends AppCompatActivity {
 
     }
 
-
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAnmalanList();
+        anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
+        if(anmalanItem != null) {
+            saveAnmalanList(anmalanItem, 0);
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -110,7 +116,7 @@ public class EditReportActivity extends AppCompatActivity {
                         mMaterialDialog.dismiss();
                         anmalanItem.setSubmitted();
                         loadAnmalanList();
-                        saveAnmalanList(anmalanItem);
+                        saveAnmalanList(anmalanItem, 1);
                     }
                 })
                 .setNegativeButton("Avbryt", new View.OnClickListener() {
@@ -148,7 +154,7 @@ public class EditReportActivity extends AppCompatActivity {
         }
     }
 
-    public void saveAnmalanList(AnmalanItem anmalanItem) {
+    public void saveAnmalanList(AnmalanItem anmalanItem, int submitAnmalan) {
 
         AnmalanItem aItem;
         for (int i = 0; i < anmalanItemList.size(); i++) {
@@ -173,10 +179,13 @@ public class EditReportActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //After save go to anmalan fragment
-        Intent intent = new Intent(this, DrawerActivity.class);
-        intent.putExtra("anmalanFragment", 1);
-        startActivity(intent);
+        if(submitAnmalan == 1){
+
+            //After save go to anmalan fragment
+            Intent intent = new Intent(this, DrawerActivity.class);
+            intent.putExtra("anmalanFragment", 1);
+            startActivity(intent);
+        }
     }
 
 

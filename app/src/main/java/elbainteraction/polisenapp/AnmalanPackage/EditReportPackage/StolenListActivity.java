@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateInterpolator;
@@ -24,6 +26,7 @@ import android.widget.Toast;
 
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanAdapter;
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
+import elbainteraction.polisenapp.DrawerActivity;
 import elbainteraction.polisenapp.R;
 
 
@@ -42,6 +45,7 @@ public class StolenListActivity extends AppCompatActivity {
     }
 
         private FloatingActionButton mFab;
+
         private FrameLayout mFabContainer;
         private LinearLayout mAddNewContainer;
 
@@ -70,6 +74,18 @@ public class StolenListActivity extends AppCompatActivity {
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+
             mFab = (FloatingActionButton)findViewById(R.id.reveal_add_fab);
             mFabSize = 16f;
             mFab.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +153,26 @@ public class StolenListActivity extends AppCompatActivity {
             });
         }
 
+    @Override
+    public void onBackPressed() {
+        if(mAddNewContainer.getVisibility() == View.GONE) {
+            super.onBackPressed();
+            Intent intent = new Intent(this, EditReportActivity.class);
+            intent.putExtra("anmalanItem", anmalanItem);
+            Log.d("HEJJJ", "HHHHHHHEEE");
+            startActivity(intent);
+        } else {
+            //StolenItemLIst
+            ViewPropertyAnimator animator = mAddNewContainer.animate()
+                    .scaleY(0)
+                    .setDuration(600)
+                    .setListener(mEndAddListener);
+            animator.start();
+
+            anim.removeAllListeners();
+        }
+    }
+
         private AnimatorListenerAdapter mEndRevealListener = new AnimatorListenerAdapter() {
 
             @Override
@@ -144,8 +180,8 @@ public class StolenListActivity extends AppCompatActivity {
 
 
                 super.onAnimationEnd(animation);
-                Toast.makeText(getApplicationContext(),"Fuck",Toast.LENGTH_LONG).show();
                 mFab.setVisibility(View.INVISIBLE);
+                findViewById(R.id.recycler_view).setVisibility(View.GONE);
                // findViewById(R.id.add_new_container).setBackgroundColor(getResources()
                  //       .getColor(R.color.colorAccent));
 
@@ -197,48 +233,48 @@ public class StolenListActivity extends AppCompatActivity {
 
         //fabrikat
         tv = (TextView) findViewById(R.id.input_fabrikat);
-        String s = (String) tv.getText();
+        String s = (String) tv.getText().toString();
         if(!s.equals("")) bi.setBrand(s);
 
         //typ (mountainbike, kärringcykel osv.
         tv = (TextView) findViewById(R.id.input_typ);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) bi.setType(s);
 
 
         //model
         tv = (TextView) findViewById(R.id.input_modell);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) bi.setModel(s);
 
         //färg
         tv = (TextView) findViewById(R.id.input_farg);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) bi.setColor(s);
 
         //maärkning
         tv = (TextView) findViewById(R.id.input_markning);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) bi.setBranding(s);
 
         //ramnummer
         tv = (TextView) findViewById(R.id.input_ramnummer);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) bi.setFrameNumber(s);
 
         //försäkringsföretag
         tv = (TextView) findViewById(R.id.input_registrerad);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) bi.setInsuranceCompany(s);
 
         //stöldnummer
         tv = (TextView) findViewById(R.id.input_stoldnummer);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) bi.setStealNumber(s);
 
         //värde
         tv = (TextView) findViewById(R.id.input_varde);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")){
             int value = Integer.parseInt((String) tv.getText());
             bi.setValue(value);
@@ -267,7 +303,7 @@ public class StolenListActivity extends AppCompatActivity {
             mFab.setY(fabStartY);
             mFab.setImageAlpha(254);
             mAddNewContainer.setVisibility(View.GONE);
-            findViewById(R.id.text).setVisibility(View.VISIBLE);
+            findViewById(R.id.recycler_view).setVisibility(View.VISIBLE);
             mRevealFlag = false;
             clearInput();
         }

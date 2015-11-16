@@ -1,9 +1,11 @@
 package elbainteraction.polisenapp.AnmalanPackage.EditReportPackage;
 
+import java.io.Serializable;
+
 /**
  * Created by fbont on 2015-11-10.
  */
-public class BikeItem {
+public class BikeItem implements Serializable{
 
     private String brand, type, model, color, branding, frameNumber;
     private String insuranceCompany, stealNumber;
