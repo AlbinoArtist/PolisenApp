@@ -79,7 +79,9 @@ public class EditReportActivity extends AppCompatActivity {
         vittnenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), WittnessListActivity.class));
+                Intent intent = new Intent(getApplicationContext(), WittnessListActivity.class);
+                intent.putExtra("anmalanItem", anmalanItem);
+                startActivity(intent);
             }
         });
 

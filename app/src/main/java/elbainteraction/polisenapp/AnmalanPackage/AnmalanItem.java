@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.BikeItem;
 import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.Culprit;
+import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.Witness;
 
 /**
  * Created by Alexander on 2015-10-29.
@@ -17,6 +18,7 @@ public class AnmalanItem implements Serializable{
     private int id;
     private ArrayList<BikeItem> stolenItems;
     private ArrayList<Culprit> culpritList;
+    private ArrayList<Witness> witnessList;
 
     public AnmalanItem(int id, String brottsTyp){
         this.brottsTyp = brottsTyp;
@@ -39,6 +41,13 @@ public class AnmalanItem implements Serializable{
         culpritList.add(culprit);
     }
 
+    public void addWitness(Witness witness){
+        if(witnessList == null){
+            witnessList = new ArrayList<Witness>();
+        }
+        witnessList.add(witness);
+    }
+
     public ArrayList<BikeItem> getStolenItems(){
         if(stolenItems == null){
             stolenItems = new ArrayList<BikeItem>();
@@ -51,6 +60,13 @@ public class AnmalanItem implements Serializable{
             culpritList = new ArrayList<Culprit>();
         }
         return culpritList;
+    }
+
+    public ArrayList<Witness> getWitnessList(){
+        if( witnessList == null){
+            witnessList = new ArrayList<Witness>();
+        }
+        return witnessList;
     }
 
     public int getId(){

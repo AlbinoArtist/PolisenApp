@@ -4,10 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +29,10 @@ import elbainteraction.polisenapp.R;
 
 public class WittnessListActivity extends AppCompatActivity {
 
-    AnmalanItem anmalanItem;
+    private AnmalanItem anmalanItem;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +54,31 @@ public class WittnessListActivity extends AppCompatActivity {
 
 
         private void bindViews() {
-            setContentView(R.layout.activity_witness_list);
+            setContentView(R.layout.activity_wittness_list);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+
+            anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
+
+            mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+            mRecyclerView.setHasFixedSize(true);
+
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(mLayoutManager);
+
+            mAdapter = new WitnessItemAdapter(anmalanItem.getWitnessList(), this);
+            mRecyclerView.setAdapter(mAdapter);
+
+
             mFab = (FloatingActionButton)findViewById(R.id.reveal_add_fab);
             mFabSize = 16f;
             mFab.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +135,25 @@ public class WittnessListActivity extends AppCompatActivity {
             });
         }
 
+    @Override
+    public void onBackPressed() {
+        if(mAddNewContainer.getVisibility() == View.GONE) {
+            super.onBackPressed();
+            Intent intent = new Intent(this, EditReportActivity.class);
+            intent.putExtra("anmalanItem", anmalanItem);
+            startActivity(intent);
+        } else {
+            //StolenItemLIst
+            ViewPropertyAnimator animator = mAddNewContainer.animate()
+                    .scaleY(0)
+                    .setDuration(600)
+                    .setListener(mEndAddListener);
+            animator.start();
+
+            anim.removeAllListeners();
+        }
+    }
+
         private AnimatorListenerAdapter mEndRevealListener = new AnimatorListenerAdapter() {
 
             @Override
@@ -114,11 +161,10 @@ public class WittnessListActivity extends AppCompatActivity {
 
 
                 super.onAnimationEnd(animation);
-                Toast.makeText(getApplicationContext(),"Fuck",Toast.LENGTH_LONG).show();
                 mFab.setVisibility(View.INVISIBLE);
+                findViewById(R.id.recycler_view).setVisibility(View.GONE);
                // findViewById(R.id.add_new_container).setBackgroundColor(getResources()
                  //       .getColor(R.color.colorAccent));
-                findViewById(R.id.text).setVisibility(View.GONE);
                 mAddNewContainer.setScaleX(1);
                 mAddNewContainer.setScaleY(1);
                 mAddNewContainer.setVisibility(View.VISIBLE);
@@ -175,32 +221,30 @@ public class WittnessListActivity extends AppCompatActivity {
 
         //firstName
         tv = (TextView) findViewById(R.id.input_firstname);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) w.setFirstName(s);
 
         //efternamn
         tv = (TextView) findViewById(R.id.input_lastname);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) w.setSurName(s);
 
         //personnummer
         tv = (TextView) findViewById(R.id.input_ssnumber);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) w.setPersonNumber(s);
 
         //phoneNumber
         tv = (TextView) findViewById(R.id.input_phonenbr);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) w.setPhoneNumber(s);
 
         //email
         tv = (TextView) findViewById(R.id.input_email);
-        s = (String) tv.getText();
+        s = (String) tv.getText().toString();
         if(!s.equals("")) w.setEmail(s);
 
-        // TODO: 2015-11-10 Create addWitness method in anmalanItem
-        //anmalanItem.addWitness(w);
-
+        anmalanItem.addWitness(w);
 
     }
 
@@ -214,7 +258,7 @@ public class WittnessListActivity extends AppCompatActivity {
             mFab.setY(fabStartY);
             mFab.setImageAlpha(254);
             mAddNewContainer.setVisibility(View.GONE);
-            findViewById(R.id.text).setVisibility(View.VISIBLE);
+            findViewById(R.id.recycler_view).setVisibility(View.VISIBLE);
             mRevealFlag = false;
             clearInput();
 
