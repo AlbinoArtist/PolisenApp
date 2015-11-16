@@ -255,9 +255,6 @@ public class StolenListActivity extends AppCompatActivity {
         animator.start();
 
         anim.removeAllListeners();
-
-
-
     }
 
     private AnimatorListenerAdapter mEndAddListener = new AnimatorListenerAdapter() {
@@ -273,10 +270,10 @@ public class StolenListActivity extends AppCompatActivity {
             findViewById(R.id.text).setVisibility(View.VISIBLE);
             mRevealFlag = false;
             clearInput();
-
         }
 
     };
+
     private void clearInput(){
         for(int i=0;i<mAddNewContainer.getChildCount();i++){
             View v = mAddNewContainer.getChildAt(i);
@@ -286,11 +283,6 @@ public class StolenListActivity extends AppCompatActivity {
                 ((EditText)((TextInputLayout) v).getChildAt(0)).setText("");
                 ((EditText)((TextInputLayout) v).getChildAt(0)).clearFocus();
             }
-
         }
-
     }
-
-
-
 }

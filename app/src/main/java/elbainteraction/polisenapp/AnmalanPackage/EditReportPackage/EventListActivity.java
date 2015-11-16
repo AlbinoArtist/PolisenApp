@@ -18,7 +18,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import elbainteraction.polisenapp.R;
@@ -176,6 +178,23 @@ public class EventListActivity extends AppCompatActivity {
         animator.start();
 
         anim.removeAllListeners();
+
+
+        // TODO: 2015-11-16 Implement connection between data class and GUI.
+        /*TextView tv;
+
+        //eventType
+        int eventType = Event.MULTIPLE_EVENTS;
+        RadioButton rb = (RadioButton) findViewById(R.id.input_singe_event);
+        if (rb.isChecked()){
+            eventType = Event.SINGLE_EVENT;
+        }
+
+        //Create event
+        Event event = new Event(eventType, name, isApproximate);
+        */
+
+
 
     }
 
