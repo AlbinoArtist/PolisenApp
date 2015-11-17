@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment2_top"
+    android:fitsSystemWindows="true">
+    <fragment
+        android:id="@+id/location_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_cast_dark"
+            android:layout_gravity="center"
+            android:id="@+id/middle.screen.pin"
+            android:visibility="visible"/>
+
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_cast_dark"
+        app:layout_anchorGravity="bottom|end"
+        android:id="@+id/pin.button"
+        android:clickable="true"
+        app:layout_anchor="@id/fragment2_top"
+        android:layout_margin="@dimen/fab_margin"
+
+        />
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

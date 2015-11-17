@@ -1,0 +1,56 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:id="@+id/toplayout"
+
+    tools:context=".AddEventActivity">
+    <!-- Datum -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/hint.eventbeskrivning"
+            android:id="@+id/text.time"
+            android:layout_marginLeft="5dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:paddingBottom="18dp"
+            />
+
+        <android.support.design.widget.TextInputLayout app:counterEnabled="true" app:counterMaxLength="800" android:id="@+id/input.layout.namn" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input.handelsenamn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint.beskrivning"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:maxLines="20"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_cast_dark"
+        app:layout_anchorGravity="bottom|end"
+        android:id="@+id/finish.button"
+        android:clickable="true"
+        app:layout_anchor="@id/toplayout"
+        android:layout_margin="0dp"
+        />
+
+
+</android.support.design.widget.CoordinatorLayout>

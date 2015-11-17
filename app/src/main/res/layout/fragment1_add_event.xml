@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.henrik.realdeal.AddEventActivity$PlaceholderFragment">
+
+    <!--Namn -->
+    <android.support.design.widget.TextInputLayout android:scaleX="1"
+        android:scaleY="1" android:id="@+id/input.layout.namn" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/input.handelsenamn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint.handelsenamn"
+            android:inputType="textPersonName"
+            />
+    </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layout.timedatetext"
+        android:weightSum="1"
+        android:layout_marginLeft="6dp"
+        >
+        <!-- Datum -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/hint.date"
+            android:id="@+id/text.time"
+            android:layout_marginLeft="5dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:layout_weight="0.7"
+            /> <!-- Datum -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/hint.time"
+            android:id="@+id/text.timedate"
+            android:layout_marginLeft="5dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:layout_weight="0.3"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layout.timedate"
+        android:weightSum="1"
+        android:layout_marginLeft="6dp"
+        >
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="2014-12-13"
+            android:textSize="20dp"
+            android:id="@+id/input.datepicker"
+            style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="24:13"
+            android:textSize="20dp"
+            android:id="@+id/input.timepicker"
+            style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="Är tiden ungefärlig?"
+            android:paddingTop="7dp"
+          />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

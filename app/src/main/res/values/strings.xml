@@ -138,6 +138,14 @@
     <string name="hint.age">Uppskattad ålder (år)</string>
     <string name="hint.description">Signalament</string>
     <string name="hint.sex">Kön</string>
+    <string name="hint.eventname">Namn på händelsen</string>
+    <string name="hint.handelsenamn">Namn på händelsen</string>
+    <string name="hint.timedate">Datum och tid</string>
+    <string name="hint.eventbeskrivning">Beskriv händelsen så detaljerat du kan. Utelämna namn på inblandande personer. </string>
+    <string name="title_activity_pick_location_map">Map</string>
+    <string name="hint.date">Datum</string>
+    <string name="hint.time">Tidpunkt</string>
+    <string name="hint.beskrivning">Beskriv händelsen</string>
     <string-array name="las_choices">
         <item>Låst</item>
         <item>Olåst</item>
@@ -159,4 +167,5 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_removeme">Map</string>
 </resources>

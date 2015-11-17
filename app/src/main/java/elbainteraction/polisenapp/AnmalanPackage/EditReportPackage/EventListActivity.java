@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
@@ -122,31 +123,8 @@ public class EventListActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-
-
-                super.onAnimationEnd(animation);
-                Toast.makeText(getApplicationContext(),"Fuck",Toast.LENGTH_LONG).show();
-                mFab.setVisibility(View.INVISIBLE);
-               // findViewById(R.id.add_new_container).setBackgroundColor(getResources()
-                 //       .getColor(R.color.colorAccent));
-                findViewById(R.id.text).setVisibility(View.GONE);
-                mAddNewContainer.setScaleX(1);
-                mAddNewContainer.setScaleY(1);
-                mAddNewContainer.setVisibility(View.VISIBLE);
-
-
-                for (int i = 0; i < mAddNewContainer.getChildCount(); i++) {
-
-                    View v = mAddNewContainer.getChildAt(i);
-                    ViewPropertyAnimator animator = v.animate()
-                            .scaleX(1).scaleY(1)
-                            .setDuration(ANIMATION_DURATION);
-
-                    animator.setStartDelay(i * 50);
-                    animator.start();
-                }
-
-
+                Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
+                startActivity(intent);
             }
 
         };
