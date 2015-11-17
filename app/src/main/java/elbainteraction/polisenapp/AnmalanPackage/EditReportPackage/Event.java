@@ -1,11 +1,12 @@
 package elbainteraction.polisenapp.AnmalanPackage.EditReportPackage;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by fbont on 2015-11-16.
  */
-public class Event {
+public class Event implements Serializable{
 
     public static int SINGLE_EVENT = 0, MULTIPLE_EVENTS = 1;
     public int eventType;

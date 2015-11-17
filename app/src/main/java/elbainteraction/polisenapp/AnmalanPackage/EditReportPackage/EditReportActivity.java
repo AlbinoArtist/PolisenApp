@@ -31,7 +31,7 @@ public class EditReportActivity extends AppCompatActivity {
     private AnmalanItem anmalanItem;
     private MaterialDialog mMaterialDialog;
     private ArrayList<AnmalanItem> anmalanItemList;
-    private TextView stulnaForemalButton, garningsManButon, vittnenButton, lamnaAnmalanButton;
+    private TextView stulnaForemalButton, garningsManButon, vittnenButton, eventButton, lamnaAnmalanButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,7 @@ public class EditReportActivity extends AppCompatActivity {
         garningsManButon = (TextView) findViewById(R.id.garningsman);
         vittnenButton = (TextView) findViewById(R.id.vittnen);
         lamnaAnmalanButton = (TextView) findViewById(R.id.lamnaAnmalan);
+        eventButton = (TextView) findViewById(R.id.event);
 
         if(anmalanItem.isSubmitted().equals("Inlämnad")){
             lamnaAnmalanButton.setTextColor(getResources().getColor(R.color.colorDivider));
@@ -91,6 +92,14 @@ public class EditReportActivity extends AppCompatActivity {
             }
         });
 
+        eventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), EventListActivity.class);
+                intent.putExtra("anmalanItem", anmalanItem);
+                startActivity(intent);
+            }
+        });
 
 
     }

@@ -16,6 +16,7 @@
     <string name="title_activity_culprit_list">CulpritListActivity</string>
     <string name="title_activity_wittness_list">WittnessListActivity</string>
     <string name="title_activity_event_list">EventListActivity</string>
+    <string name="title_activity_addEvent_list">AddEventActivity</string>
     <string name="title_activity_upload_picture">UploadPictureActivity</string>
 
     <string name="large_text">
@@ -119,6 +120,7 @@
     <string name="header.stolenList">Lista över stulna föremål</string>
     <string name="header.witnessList">Lista över vittnen</string>
     <string name="header.culpritList">Lista över gärningsmän</string>
+    <string name="header.anmalanList">Dina anmälningar</string>
     <string name="hint.stoldnummer">Stöldnummer</string>
     <string name="hint.last">Var föremålet låst?</string>
     <string name="hint.varde">Uppskattat värde i SEK</string>

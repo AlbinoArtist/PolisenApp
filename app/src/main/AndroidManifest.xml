@@ -72,6 +72,15 @@
                 android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity" />
         </activity>
         <activity
+            android:name=".AnmalanPackage.EditReportPackage.AddEventActivity"
+            android:label="@string/title_activity_addEvent_list"
+            android:parentActivityName=".AnmalanPackage.EditReportPackage.EditReportActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity" />
+        </activity>
+        <activity
             android:name=".AnmalanPackage.EditReportPackage.EventListActivity"
             android:label="@string/title_activity_event_list"
             android:parentActivityName=".AnmalanPackage.EditReportPackage.EditReportActivity"
