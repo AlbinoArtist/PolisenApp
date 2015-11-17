@@ -116,8 +116,4 @@ public class LoginPasswordFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-
-    public class MikesAss extends PreferenceFragment {
-
-    }
 }

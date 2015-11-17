@@ -37,28 +37,6 @@ public class DrawerActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.drawer, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -76,7 +54,7 @@ public class DrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_installning) {
             fragmentManager.beginTransaction().replace(R.id.main, new SettingsFragment()).commit();
         } else if (id == R.id.nav_login) {
-            startActivity(new Intent(this, LogActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         } else if (id == R.id.nav_logout) {
 
             SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
