@@ -7,13 +7,12 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateInterpolator;
@@ -24,9 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
 import elbainteraction.polisenapp.R;
@@ -38,6 +37,7 @@ public class CulpritListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+    private TextView headerCulpritList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class CulpritListActivity extends AppCompatActivity {
 
 
     private void bindViews() {
-        setContentView(R.layout.content_culprit_list);
+        setContentView(R.layout.activity_culprit_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -129,6 +129,8 @@ public class CulpritListActivity extends AppCompatActivity {
                 }
             }
         });
+
+        headerCulpritList = (TextView) findViewById(R.id.headerStolenList);
     }
 
     private ObjectAnimator anim;
@@ -136,47 +138,53 @@ public class CulpritListActivity extends AppCompatActivity {
     private float fabStartY;
 
     public void onFabPressed(View view) {
-        fabStartX = mFab.getX();
-        fabStartY = mFab.getY();
-        mFab.setImageAlpha(0);
 
-        AnimatorPath path = new AnimatorPath();
-        path.moveTo(0, 0);
-        path.curveTo(-200, 200, -400, 100, -600, 50);
-        anim = ObjectAnimator.ofObject(this, "fabLoc",
-                new PathEvaluator(), path.getPoints().toArray());
+        if (anmalanItem.isSubmitted().equals("Ej inlämnad")) {
+            fabStartX = mFab.getX();
+            fabStartY = mFab.getY();
+            mFab.setImageAlpha(0);
 
-        anim.setInterpolator(new AccelerateInterpolator());
-        anim.setDuration(ANIMATION_DURATION);
-        anim.start();
+            AnimatorPath path = new AnimatorPath();
+            path.moveTo(0, 0);
+            path.curveTo(-200, 200, -400, 100, -600, 50);
+            anim = ObjectAnimator.ofObject(this, "fabLoc",
+                    new PathEvaluator(), path.getPoints().toArray());
+
+            anim.setInterpolator(new AccelerateInterpolator());
+            anim.setDuration(ANIMATION_DURATION);
+            anim.start();
 
 
-        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
 
-                if (Math.abs(fabStartX - mFab.getX()) > MINIMUN_X_DISTANCE) {
+                    if (Math.abs(fabStartX - mFab.getX()) > MINIMUN_X_DISTANCE) {
 
-                    if (!mRevealFlag) {
-                        mFabContainer.setY(mFabContainer.getY() + mFabSize / 2);
+                        if (!mRevealFlag) {
+                            mFabContainer.setY(mFabContainer.getY() + mFabSize / 2);
 
-                        mFab.animate()
-                                .scaleXBy(SCALE_FACTOR)
-                                .scaleYBy(SCALE_FACTOR)
-                                .setListener(mEndRevealListener)
-                                .setDuration(ANIMATION_DURATION);
+                            mFab.animate()
+                                    .scaleXBy(SCALE_FACTOR)
+                                    .scaleYBy(SCALE_FACTOR)
+                                    .setListener(mEndRevealListener)
+                                    .setDuration(ANIMATION_DURATION);
 
-                        mRevealFlag = true;
+                            mRevealFlag = true;
+                        }
                     }
                 }
-            }
-        });
+            });
+        } else {
+            Snackbar.make(view, "Du kan inte redigera en inlämnad anmälan!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
     }
 
     @Override
     public void onBackPressed() {
-        if(mAddNewContainer.getVisibility() == View.GONE) {
+        if (mAddNewContainer.getVisibility() == View.GONE) {
             super.onBackPressed();
             Intent intent = new Intent(this, EditReportActivity.class);
             intent.putExtra("anmalanItem", anmalanItem);
@@ -202,6 +210,7 @@ public class CulpritListActivity extends AppCompatActivity {
             super.onAnimationEnd(animation);
             mFab.setVisibility(View.INVISIBLE);
             findViewById(R.id.recycler_view).setVisibility(View.GONE);
+            headerCulpritList.setVisibility(View.GONE);
             // findViewById(R.id.add_new_container).setBackgroundColor(getResources()
             //       .getColor(R.color.colorAccent));
             mAddNewContainer.setScaleX(1);
@@ -219,8 +228,6 @@ public class CulpritListActivity extends AppCompatActivity {
                 animator.setStartDelay(i * 50);
                 animator.start();
             }
-
-
         }
 
     };
@@ -245,7 +252,6 @@ public class CulpritListActivity extends AppCompatActivity {
     }
 
     public void onCreatePressed(View v) {
-
 
 
         //create Culprit and add info
@@ -328,6 +334,7 @@ public class CulpritListActivity extends AppCompatActivity {
             mFab.setImageAlpha(254);
             mAddNewContainer.setVisibility(View.GONE);
             findViewById(R.id.recycler_view).setVisibility(View.VISIBLE);
+            headerCulpritList.setVisibility(View.VISIBLE);
             mRevealFlag = false;
             clearInput();
         }

@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +34,7 @@ public class WittnessListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+    private TextView headerWitnessList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,47 +94,55 @@ public class WittnessListActivity extends AppCompatActivity {
             mFabContainer = (FrameLayout) findViewById(R.id.content);
             mAddNewContainer = (LinearLayout) findViewById(R.id.add_new_container);
 
+            headerWitnessList = (TextView) findViewById(R.id.headerWitnessList);
+
         }
         private ObjectAnimator anim;
         private float fabStartX;
         private float fabStartY;
         public void onFabPressed(View view) {
-            fabStartX = mFab.getX();
-            fabStartY = mFab.getY();
-            mFab.setImageAlpha(0);
 
-            AnimatorPath path = new AnimatorPath();
-            path.moveTo(0, 0);
-            path.curveTo(-200, 200, -400, 100, -600, 50);
-            anim= ObjectAnimator.ofObject(this, "fabLoc",
-                    new PathEvaluator(), path.getPoints().toArray());
+            if (anmalanItem.isSubmitted().equals("Ej inlämnad")) {
+                fabStartX = mFab.getX();
+                fabStartY = mFab.getY();
+                mFab.setImageAlpha(0);
 
-            anim.setInterpolator(new AccelerateInterpolator());
-            anim.setDuration(ANIMATION_DURATION);
-            anim.start();
+                AnimatorPath path = new AnimatorPath();
+                path.moveTo(0, 0);
+                path.curveTo(-200, 200, -400, 100, -600, 50);
+                anim = ObjectAnimator.ofObject(this, "fabLoc",
+                        new PathEvaluator(), path.getPoints().toArray());
+
+                anim.setInterpolator(new AccelerateInterpolator());
+                anim.setDuration(ANIMATION_DURATION);
+                anim.start();
 
 
-            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
 
-                    if (Math.abs(fabStartX - mFab.getX()) > MINIMUN_X_DISTANCE) {
+                        if (Math.abs(fabStartX - mFab.getX()) > MINIMUN_X_DISTANCE) {
 
-                        if (!mRevealFlag) {
-                            mFabContainer.setY(mFabContainer.getY() + mFabSize / 2);
+                            if (!mRevealFlag) {
+                                mFabContainer.setY(mFabContainer.getY() + mFabSize / 2);
 
-                            mFab.animate()
-                                    .scaleXBy(SCALE_FACTOR)
-                                    .scaleYBy(SCALE_FACTOR)
-                                    .setListener(mEndRevealListener)
-                                    .setDuration(ANIMATION_DURATION);
+                                mFab.animate()
+                                        .scaleXBy(SCALE_FACTOR)
+                                        .scaleYBy(SCALE_FACTOR)
+                                        .setListener(mEndRevealListener)
+                                        .setDuration(ANIMATION_DURATION);
 
-                            mRevealFlag = true;
+                                mRevealFlag = true;
+                            }
                         }
                     }
-                }
-            });
+                });
+            } else {
+                Snackbar.make(view, "Du kan inte redigera en inlämnad anmälan!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
         }
 
     @Override
@@ -163,6 +173,7 @@ public class WittnessListActivity extends AppCompatActivity {
                 super.onAnimationEnd(animation);
                 mFab.setVisibility(View.INVISIBLE);
                 findViewById(R.id.recycler_view).setVisibility(View.GONE);
+                headerWitnessList.setVisibility(View.GONE);
                // findViewById(R.id.add_new_container).setBackgroundColor(getResources()
                  //       .getColor(R.color.colorAccent));
                 mAddNewContainer.setScaleX(1);
@@ -259,6 +270,7 @@ public class WittnessListActivity extends AppCompatActivity {
             mFab.setImageAlpha(254);
             mAddNewContainer.setVisibility(View.GONE);
             findViewById(R.id.recycler_view).setVisibility(View.VISIBLE);
+            headerWitnessList.setVisibility(View.VISIBLE);
             mRevealFlag = false;
             clearInput();
 

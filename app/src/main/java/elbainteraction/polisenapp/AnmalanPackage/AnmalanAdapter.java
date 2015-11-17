@@ -2,6 +2,7 @@ package elbainteraction.polisenapp.AnmalanPackage;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -77,7 +78,13 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         final AnmalanItem anmalanItem = mItems.get(i);
-        viewHolder.status.setText("Status anmälan: " + anmalanItem.isSubmitted());
+
+        viewHolder.status.setText("Status: " + anmalanItem.isSubmitted());
+        if (anmalanItem.isSubmitted().equals("Inlämnad")) {
+            viewHolder.status.setTextColor(activity.getResources().getColor(R.color.green));
+        } else {
+            viewHolder.status.setTextColor(Color.RED);
+        }
         viewHolder.nbrStolenItems.setText("Antal stulna objekt: " + anmalanItem.getNbrOfStolenItems());
         viewHolder.nbrWitnessItems.setText("Antal vittnen: " + anmalanItem.getNbrOfWitness());
         viewHolder.brottstyp.setText(anmalanItem.getBrottsTyp());

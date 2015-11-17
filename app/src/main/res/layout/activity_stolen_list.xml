@@ -10,34 +10,33 @@
         android:id="@+id/include"
         layout="@layout/toolbar_picturetext" />
 
-    <FrameLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:showIn="@layout/activity_scrolling" />
-
-        <include layout="@layout/add_stolen_item" />
-
-    </FrameLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
         <FrameLayout
             android:id="@+id/top_frame"
             android:layout_width="match_parent"
-            android:layout_height="80dp" />
+            android:layout_height="80dp">
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/headerStolenList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/header.stolenList"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/header_text_size" />
 
         <FrameLayout
             android:id="@+id/bottom_frame"
@@ -46,17 +45,38 @@
             android:layout_gravity="bottom">
 
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/reveal_add_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@drawable/ic_plus_white_48dp" />
+
+
+
+            <FrameLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    tools:showIn="@layout/activity_scrolling" />
+
+                <include layout="@layout/add_stolen_item" />
+
+            </FrameLayout>
 
         </FrameLayout>
 
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/reveal_add_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_plus_white_48dp" />
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package elbainteraction.polisenapp.AnmalanPackage.EditReportPackage;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -30,7 +31,7 @@ public class EditReportActivity extends AppCompatActivity {
     private AnmalanItem anmalanItem;
     private MaterialDialog mMaterialDialog;
     private ArrayList<AnmalanItem> anmalanItemList;
-    private TextView stulnaForemalButton, garningsManButon, vittnenButton;
+    private TextView stulnaForemalButton, garningsManButon, vittnenButton, lamnaAnmalanButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,11 @@ public class EditReportActivity extends AppCompatActivity {
         stulnaForemalButton = (TextView) findViewById(R.id.stulnaForemal);
         garningsManButon = (TextView) findViewById(R.id.garningsman);
         vittnenButton = (TextView) findViewById(R.id.vittnen);
+        lamnaAnmalanButton = (TextView) findViewById(R.id.lamnaAnmalan);
+
+        if(anmalanItem.isSubmitted().equals("Inlämnad")){
+            lamnaAnmalanButton.setTextColor(getResources().getColor(R.color.colorDivider));
+        }
 
         stulnaForemalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,30 +117,35 @@ public class EditReportActivity extends AppCompatActivity {
 
     public void dialogWindow(View v) {
 
-        mMaterialDialog = new MaterialDialog(this)
-                .setTitle("MaterialDialog")
-                .setMessage("Hello world!")
-                .setPositiveButton("Lämna in", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMaterialDialog.dismiss();
-                        anmalanItem.setSubmitted();
-                        loadAnmalanList();
-                        saveAnmalanList(anmalanItem, 1);
-                    }
-                })
-                .setNegativeButton("Avbryt", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMaterialDialog.dismiss();
-                    }
-                });
+        if(anmalanItem.isSubmitted().equals("Ej inlämnad")) {
 
-        mMaterialDialog.show();
-        mMaterialDialog.setTitle("Lämna in anmälan");
-        mMaterialDialog.show();
-        mMaterialDialog.setMessage("Vill du verkligen lämna in din anmälan till Polisen?");
+            mMaterialDialog = new MaterialDialog(this)
+                    .setTitle("MaterialDialog")
+                    .setMessage("Hello world!")
+                    .setPositiveButton("Lämna in", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mMaterialDialog.dismiss();
+                            anmalanItem.setSubmitted();
+                            loadAnmalanList();
+                            saveAnmalanList(anmalanItem, 1);
+                        }
+                    })
+                    .setNegativeButton("Avbryt", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mMaterialDialog.dismiss();
+                        }
+                    });
 
+            mMaterialDialog.show();
+            mMaterialDialog.setTitle("Lämna in anmälan");
+            mMaterialDialog.show();
+            mMaterialDialog.setMessage("Vill du verkligen lämna in din anmälan till Polisen?");
+        } else {
+            Snackbar.make(v, "Din anmälan är redan inskickad!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
 
     }
 

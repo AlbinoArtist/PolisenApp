@@ -2,7 +2,9 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:id="@+id/scrollView"
+    android:focusable="true">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -23,13 +25,14 @@
         android:textSize="@dimen/header_text_size"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-
+        android:id="@+id/headerItem"
         android:layout_marginBottom="15dp"
         android:textColor="@color/colorPrimaryDark"
         android:textAllCaps="true"
         android:scaleX="0"
         android:scaleY="0"
-        />
+        android:focusable="true" />
+
     <!-- Text Föremålsspinner-->
     <TextView
         android:layout_width="wrap_content"

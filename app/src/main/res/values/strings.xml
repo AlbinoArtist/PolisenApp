@@ -116,6 +116,9 @@
     <string name="hint.registrerad">Registrerad hos</string>
     <string name="input.header.forsakring">Försäkringsinfo</string>
     <string name="input.header.foremal">Föremålsbeskrivning</string>
+    <string name="header.stolenList">Lista över stulna föremål</string>
+    <string name="header.witnessList">Lista över vittnen</string>
+    <string name="header.culpritList">Lista över gärningsmän</string>
     <string name="hint.stoldnummer">Stöldnummer</string>
     <string name="hint.last">Var föremålet låst?</string>
     <string name="hint.varde">Uppskattat värde i SEK</string>
