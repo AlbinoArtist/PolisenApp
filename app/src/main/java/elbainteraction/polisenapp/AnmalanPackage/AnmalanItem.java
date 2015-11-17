@@ -16,6 +16,7 @@ public class AnmalanItem implements Serializable{
     private boolean submitted;
     private String mDes;
     private int id;
+    private int nbrOfStolenItems, nbrOfWitness;
     private ArrayList<BikeItem> stolenItems;
     private ArrayList<Culprit> culpritList;
     private ArrayList<Witness> witnessList;
@@ -23,6 +24,8 @@ public class AnmalanItem implements Serializable{
     public AnmalanItem(int id, String brottsTyp){
         this.brottsTyp = brottsTyp;
         this.id = id;
+        nbrOfStolenItems = 0;
+        nbrOfWitness = 0;
         submitted = false;
 
     }
@@ -53,6 +56,22 @@ public class AnmalanItem implements Serializable{
             stolenItems = new ArrayList<BikeItem>();
         }
         return stolenItems;
+    }
+
+    public int getNbrOfStolenItems(){
+
+        if(stolenItems != null){
+            return stolenItems.size();
+        }
+        return 0;
+    }
+
+    public int getNbrOfWitness(){
+
+        if(witnessList != null){
+            return witnessList.size();
+        }
+        return 0;
     }
 
     public ArrayList<Culprit> getCulpritList(){

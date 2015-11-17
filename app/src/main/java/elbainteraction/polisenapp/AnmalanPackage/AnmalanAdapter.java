@@ -77,8 +77,9 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         final AnmalanItem anmalanItem = mItems.get(i);
-        viewHolder.status.setText(anmalanItem.isSubmitted());
-        viewHolder.anmalanDescription.setText(anmalanItem.getDes());
+        viewHolder.status.setText("Status anmälan: " + anmalanItem.isSubmitted());
+        viewHolder.nbrStolenItems.setText("Antal stulna objekt: " + anmalanItem.getNbrOfStolenItems());
+        viewHolder.nbrWitnessItems.setText("Antal vittnen: " + anmalanItem.getNbrOfWitness());
         viewHolder.brottstyp.setText(anmalanItem.getBrottsTyp());
         currentItem = mItems.get(i);
 
@@ -105,7 +106,8 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView anmalanDescription;
+        public TextView nbrStolenItems;
+        public TextView nbrWitnessItems;
         public TextView brottstyp;
         public TextView status;
         public View currentItemView;
@@ -113,7 +115,8 @@ public class AnmalanAdapter extends RecyclerView.Adapter<AnmalanAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-            anmalanDescription = (TextView) itemView.findViewById(R.id.anmalanDescription);
+            nbrStolenItems = (TextView) itemView.findViewById(R.id.nbrStolenItems);
+            nbrWitnessItems = (TextView) itemView.findViewById(R.id.nbrWitnessItems);
             brottstyp = (TextView) itemView.findViewById(R.id.brottstyp);
             status = (TextView) itemView.findViewById(R.id.status);
             currentItemView = itemView;

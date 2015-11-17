@@ -15,7 +15,7 @@
         android:layout_marginBottom="0dp">
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:id="@+id/cardItem">
 
             <TextView
@@ -34,23 +34,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="false" />
 
-
-            <TextView
-                android:id="@+id/anmalanDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="5dp"
-                android:paddingBottom="2dp"
-                android:alpha="0.8"
-                android:textColor="#ff272727"
-                android:textSize="15dp"
-                android:text="Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test"
-                android:layout_below="@+id/brottstyp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
             <TextView
                 android:id="@+id/status"
                 android:layout_width="match_parent"
@@ -62,9 +45,43 @@
                 android:alpha="0.8"
                 android:textColor="#ff272727"
                 android:textSize="15dp"
+                android:layout_below="@+id/brottstyp"
                 android:text="Status"
-                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/nbrStolenItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="2dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Antal stulna föremål"
+                android:layout_below="@+id/status"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/nbrWitnessItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="2dp"
+                android:alpha="0.8"
+                android:textColor="#ff272727"
+                android:textSize="15dp"
+                android:text="Antal anmälda vittnen"
+                android:layout_below="@+id/nbrStolenItems"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
