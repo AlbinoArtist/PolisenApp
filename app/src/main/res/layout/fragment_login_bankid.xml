@@ -2,26 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="elbainteraction.polisenapp.LoginBankidFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Personnummer"
-        android:id="@+id/personnummertitle"
-        android:layout_marginTop="50dp"
-        />
+    >
 
+
+    <!--Personnummer -->
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input.layout.fabrikat" android:layout_width="match_parent" android:layout_height="wrap_content">
     <EditText
+        android:id="@+id/inteviktigt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Personnummer (ååååmmddxxxx)"
         android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:hint="ååååmmddxxxx"
-        android:textSize="15sp"
         />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -30,6 +27,7 @@
         android:id="@+id/button3"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:onClick="loginBankID"/>
 
 </LinearLayout>

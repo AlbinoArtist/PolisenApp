@@ -1,5 +1,7 @@
 package elbainteraction.polisenapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,7 +19,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -56,6 +60,20 @@ public class LoginActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
     }
 
+    public void login(View view) {
+        Toast.makeText(getApplicationContext(), "Inloggning lyckades.", Toast.LENGTH_LONG).show();
+
+        SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.putBoolean("Logged in", true).commit();
+
+        Intent intent = new Intent(this, DrawerActivity.class);
+        startActivity(intent);
+    }
+
+    public void loginBankID(View view){
+        Toast.makeText(this, "BankID fungerar ej i denna prototyp, testa ett lösenord istället.", Toast.LENGTH_LONG).show();
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

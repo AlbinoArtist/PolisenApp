@@ -29,15 +29,6 @@
                 android:value="elbainteraction.polisenapp.DrawerActivity" />
         </activity>
         <activity
-            android:name=".LogActivity"
-            android:label="@string/title_activity_log"
-            android:parentActivityName=".DrawerActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="elbainteraction.polisenapp.DrawerActivity" />
-        </activity>
-        <activity
             android:name=".AnmalanPackage.EditReportPackage.EditReportActivity"
             android:label="@string/title_activity_edit_report"
             android:parentActivityName=".DrawerActivity"
