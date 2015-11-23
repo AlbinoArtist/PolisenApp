@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_content"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fitsSystemWindows="true" tools:context="elbainteraction.polisenapp.LoginActivity">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar_picturetext" />
+    <android.support.design.widget.AppBarLayout android:id="@+id/appbar"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <include
+            android:id="@+id/include"
+            layout="@layout/toolbar_picturetext" />
 
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -18,7 +28,8 @@
         android:layout_below="@+id/include"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="end">
 
         <TextView
             android:id="@+id/textHeader"
@@ -37,7 +48,9 @@
             android:layout_marginBottom="0dp"
             android:layout_marginTop="9dp"
             card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="0.01dp">
+            card_view:cardElevation="0.01dp"
+            android:onClick="cardClick"
+            android:id="@+id/card.fstold">
 
             <RelativeLayout
                 android:id="@+id/top_layout"
@@ -99,7 +112,9 @@
             android:layout_marginBottom="0dp"
             android:layout_marginTop="9dp"
             card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="0.01dp">
+            card_view:cardElevation="0.01dp"
+            android:onClick="cardClick"
+            android:id="@+id/card.stold">
 
             <RelativeLayout
                 android:id="@+id/relativeLayout2"
@@ -160,12 +175,15 @@
             android:layout_marginBottom="0dp"
             android:layout_marginTop="9dp"
             card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="0.01dp">
+            card_view:cardElevation="0.01dp"
+            android:onClick="cardClick"
+            android:id="@+id/card.konto">
 
             <RelativeLayout
                 android:id="@+id/relativeLayout3"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <TextView
                     android:id="@+id/crime_3"
@@ -218,6 +236,7 @@
 
 
     </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/confirm_anmalan_button"
@@ -231,4 +250,4 @@
         android:src="@drawable/ic_plus_white_48dp"
         android:visibility="gone" />
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

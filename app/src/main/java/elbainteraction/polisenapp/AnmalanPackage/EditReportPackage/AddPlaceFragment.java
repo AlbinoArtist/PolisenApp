@@ -28,7 +28,6 @@ public  class AddPlaceFragment extends Fragment implements OnMapReadyCallback {
         AddPlaceFragment fragment = new AddPlaceFragment();
         return fragment;
     }
-
     private static View view;
     private MarkerOptions markerOptions;
     private boolean isToggled;
@@ -36,7 +35,6 @@ public  class AddPlaceFragment extends Fragment implements OnMapReadyCallback {
      * Note that this may be null if the Google Play services APK is not
      * available.
      */
-
     private static GoogleMap mMap;
 
     @Override

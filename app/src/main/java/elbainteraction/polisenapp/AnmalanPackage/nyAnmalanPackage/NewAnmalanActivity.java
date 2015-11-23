@@ -79,6 +79,20 @@ public class NewAnmalanActivity extends AppCompatActivity{
         button.setVisibility(View.VISIBLE);
 
     }
+    public void cardClick(View v){
+        switch (v.getId()){
+            case R.id.card_fstold:
+                radioClick(r1);
+                break;
+            case R.id.card_stold:
+                radioClick(r2);
+                break;
+
+            case R.id.card_konto:
+                radioClick(r3);
+                break;
+        }
+    }
 
     @Override
     public void onBackPressed() {
