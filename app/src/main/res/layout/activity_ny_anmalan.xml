@@ -30,7 +30,7 @@
         android:layout_marginRight="5dp"
         android:padding="5dp"
         android:orientation="vertical"
-        android:gravity="end">
+       >
 
         <TextView
             android:id="@+id/textHeader"
@@ -56,7 +56,8 @@
             <RelativeLayout
                 android:id="@+id/top_layout"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp">
 
                 <TextView
                     android:id="@+id/crime_1"
@@ -120,7 +121,8 @@
             <RelativeLayout
                 android:id="@+id/relativeLayout2"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp">
 
                 <TextView
                     android:id="@+id/crime_2"
@@ -178,12 +180,14 @@
             card_view:cardCornerRadius="3dp"
             card_view:cardElevation="5dp"
             android:onClick="cardClick"
-            android:id="@+id/card.konto">
+            android:id="@+id/card.konto"
+            >
 
             <RelativeLayout
                 android:id="@+id/relativeLayout3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
                 >
 
                 <TextView
@@ -235,7 +239,9 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="18dp" />
     </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
@@ -248,7 +254,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="confirmAnmalan"
-        android:src="@drawable/ic_plus_white_48dp"
+        android:src="@drawable/ic_check_white_48dp"
         android:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>
