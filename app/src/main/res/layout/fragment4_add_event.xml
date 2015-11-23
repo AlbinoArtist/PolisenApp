@@ -44,7 +44,7 @@
     <android.support.design.widget.FloatingActionButton
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:src="@drawable/ic_cast_dark"
+        android:src="@drawable/ic_check_white_48dp"
         app:layout_anchorGravity="bottom|end"
         android:id="@+id/finish.button"
         android:clickable="true"

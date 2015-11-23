@@ -100,7 +100,7 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
 
                 if (position == 1) {
                     Snackbar snackbar = Snackbar
-                            .make(findViewById(R.id.main_content), "Klicka på knappen för att släppa en markör mitt på skärmen.", Snackbar.LENGTH_LONG).setAction("OK", new View.OnClickListener() {
+                            .make(findViewById(R.id.fragment2_top), "Klicka på knappen för att släppa en markör mitt på skärmen.", Snackbar.LENGTH_LONG).setAction("OK", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
 

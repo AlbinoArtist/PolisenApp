@@ -67,9 +67,11 @@ public  class AddPlaceFragment extends Fragment implements OnMapReadyCallback {
                 if(pin.getVisibility()==View.GONE){
                     mMap.clear();
                     pin.setVisibility(View.VISIBLE);
-                }
-                else{
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_map_marker_white_48dp));
+                } else {
                     view.findViewById(R.id.middle_screen_pin).setVisibility(View.GONE);
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_map_marker_off_white_48dp));
+
                     mMap.clear();
                     markerOptions = new MarkerOptions().position(new LatLng(mMap.getCameraPosition().target.latitude, mMap.getCameraPosition().target.longitude)).draggable(true).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                     mMap.addMarker(markerOptions);
