@@ -58,7 +58,7 @@ public  class AddPlaceFragment extends Fragment implements OnMapReadyCallback {
 
         /* map is already there, just return view as it is */
         }
-        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.pin_button);
+        final FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.pin_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
