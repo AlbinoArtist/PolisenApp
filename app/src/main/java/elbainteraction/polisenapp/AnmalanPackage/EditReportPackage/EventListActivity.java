@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,17 +26,24 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
 import elbainteraction.polisenapp.R;
 
 
 public class EventListActivity extends AppCompatActivity {
+
+
+    private AnmalanItem anmalanItem;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
+    private TextView headerEventtList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bindViews();
     }
-
 
         private FloatingActionButton mFab;
         private FrameLayout mFabContainer;
@@ -52,6 +61,29 @@ public class EventListActivity extends AppCompatActivity {
             setContentView(R.layout.activity_event_list);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+
+            anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
+
+            mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+            mRecyclerView.setHasFixedSize(true);
+
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(mLayoutManager);
+
+            mAdapter = new EventItemAdapter(anmalanItem.getEventList(), this);
+            mRecyclerView.setAdapter(mAdapter);
+
+
             mFab = (FloatingActionButton)findViewById(R.id.reveal_add_fab);
             mFabSize = 16f;
             mFab.setOnClickListener(new View.OnClickListener() {
@@ -74,8 +106,9 @@ public class EventListActivity extends AppCompatActivity {
             programSpinner.setAdapter(spinnerArrayAdapter);
             programSpinner.setScaleY(0);
             programSpinner.setScaleX(0);
-            mAddNewContainer.addView(programSpinner,2);
+            mAddNewContainer.addView(programSpinner, 2);
 
+            headerEventtList = (TextView) findViewById(R.id.headerEventList);
         }
         private ObjectAnimator anim;
         private float fabStartX;
@@ -119,12 +152,34 @@ public class EventListActivity extends AppCompatActivity {
             });
         }
 
-        private AnimatorListenerAdapter mEndRevealListener = new AnimatorListenerAdapter() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mFab.setScaleX(1);
+        mFab.setScaleY(1);
+        mFab.setX(fabStartX);
+        mFab.setY(fabStartY);
+        mFab.setImageAlpha(254);
+    }
+
+    private AnimatorListenerAdapter mEndRevealListener = new AnimatorListenerAdapter() {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+
                 Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
+                intent.putExtra("anmalanItem", anmalanItem);
                 startActivity(intent);
+/*                mFab.setScaleX(1);
+                mFab.setScaleY(1);
+                mFab.show();
+                mFab.setX(fabStartX);
+                mFab.setY(fabStartY);
+                mFab.setImageAlpha(254);*/
+                mAddNewContainer.setVisibility(View.GONE);
+                mRevealFlag = false;
+                clearInput();
             }
 
         };
@@ -189,7 +244,6 @@ public class EventListActivity extends AppCompatActivity {
             findViewById(R.id.text).setVisibility(View.VISIBLE);
             mRevealFlag = false;
             clearInput();
-
         }
 
     };

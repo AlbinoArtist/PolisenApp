@@ -8,17 +8,13 @@ import java.util.Date;
  */
 public class Event implements Serializable{
 
-    public static int SINGLE_EVENT = 0, MULTIPLE_EVENTS = 1;
-    public int eventType;
-
     private String name, time, address, description;
-    private Date date;
+    private String date;
     private boolean isApproximate;
-    private float latitude, longitude;
+    private double latitude, longitude;
 
 
-    public Event(int eventType, String name, boolean isApproximate){
-        this.eventType = eventType;
+    public Event(String name, boolean isApproximate){
         this.name = name;
         this.isApproximate = isApproximate;
     }
@@ -55,11 +51,11 @@ public class Event implements Serializable{
         this.description = description;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -71,19 +67,19 @@ public class Event implements Serializable{
         this.isApproximate = isApproximate;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 }

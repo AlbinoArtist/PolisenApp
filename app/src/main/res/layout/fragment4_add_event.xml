@@ -29,7 +29,7 @@
 
         <android.support.design.widget.TextInputLayout app:counterEnabled="true" app:counterMaxLength="800" android:id="@+id/input.layout.namn" android:layout_width="match_parent" android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/input.handelsenamn"
+                android:id="@+id/input.beskrivningHandelse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint.beskrivning"
@@ -48,6 +48,7 @@
         app:layout_anchorGravity="bottom|end"
         android:id="@+id/finish.button"
         android:clickable="true"
+        android:onClick="addEvent"
         app:layout_anchor="@id/toplayout"
         android:layout_margin="0dp"
         />

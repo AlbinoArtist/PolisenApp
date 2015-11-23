@@ -30,6 +30,8 @@ public  class AddPlaceFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private static View view;
+    private MarkerOptions markerOptions;
+    private boolean isToggled;
     /**
      * Note that this may be null if the Google Play services APK is not
      * available.
@@ -40,6 +42,7 @@ public  class AddPlaceFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        isToggled = false;
         if (container == null) {
             return null;
         }
@@ -57,22 +60,21 @@ public  class AddPlaceFragment extends Fragment implements OnMapReadyCallback {
 
         /* map is already there, just return view as it is */
         }
-        final FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.pin_button);
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.pin_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isToggled = !isToggled;
                 ImageView pin = (ImageView)view.findViewById(R.id.middle_screen_pin);
                 if(pin.getVisibility()==View.GONE){
-                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_map_marker_white_48dp));
                     mMap.clear();
                     pin.setVisibility(View.VISIBLE);
                 }
                 else{
-                    pin.setVisibility(View.GONE);
-                    fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_map_marker_off_white_48dp));
+                    view.findViewById(R.id.middle_screen_pin).setVisibility(View.GONE);
                     mMap.clear();
-
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(mMap.getCameraPosition().target.latitude, mMap.getCameraPosition().target.longitude)).draggable(true).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    markerOptions = new MarkerOptions().position(new LatLng(mMap.getCameraPosition().target.latitude, mMap.getCameraPosition().target.longitude)).draggable(true).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    mMap.addMarker(markerOptions);
                 }
 
             }
@@ -86,5 +88,19 @@ public  class AddPlaceFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
     }
+
+
+    public Double getLatitude(){
+        return markerOptions.getPosition().latitude;
+    }
+
+    public Double getLongitude(){
+        return markerOptions.getPosition().longitude;
+    }
+
+    public boolean isToggled(){
+        return isToggled;
+    }
+
 
 }

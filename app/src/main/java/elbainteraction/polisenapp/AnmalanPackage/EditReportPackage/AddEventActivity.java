@@ -2,6 +2,7 @@ package elbainteraction.polisenapp.AnmalanPackage.EditReportPackage;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +14,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -28,11 +29,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
 import elbainteraction.polisenapp.R;
 
 
-public class AddEventActivity extends AppCompatActivity implements OnMapReadyCallback  {
+public class AddEventActivity extends AppCompatActivity implements OnMapReadyCallback {
+
     private GoogleMap mMap;
+    private AnmalanItem anmalanItem;
+    private PlaceholderFragment1 pf1;
+    private AddPlaceFragment pf2;
+    private PlaceholderFragment3 pf3;
+    private PlaceholderFragment4 pf4;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -47,17 +56,32 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-  @Override
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -66,14 +90,16 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
 
             @Override
             public void onPageSelected(int position) {
-                if(position== 1){
+
+                if (position == 1) {
                     Snackbar snackbar = Snackbar
                             .make(findViewById(R.id.main_content), "Klicka på knappen för att släppa en markör mitt på skärmen.", Snackbar.LENGTH_LONG).setAction("OK", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
 
                                 }
-                            });;
+                            });
+
 
                     snackbar.show();
                 }
@@ -91,9 +117,60 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
 
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+    }
+
+    public void addEvent(View view) {
+
+        Event event;
+
+        ////VIEW 1
+        View v1 = pf1.getView1();
+
+        EditText t = (EditText) v1.findViewById(R.id.input_namnhandelse);
+        String namnHandelse = t.getText().toString();
+
+        CheckBox isApproximate = (CheckBox) v1.findViewById(R.id.isApproximate);
+
+        if(isApproximate.isChecked()){
+            event = new Event(namnHandelse, true);
+        } else {
+            event = new Event(namnHandelse, false);
+        }
+
+
+        String date = ((TextView) v1.findViewById(R.id.input_datepicker)).toString();
+        event.setDate(date);
+
+        String time = ((TextView) v1.findViewById(R.id.input_timepicker)).toString();
+        event.setTime(time);
+
+        ////VIEW 2
+
+        if(pf2.isToggled()) {
+            event.setLatitude(pf2.getLatitude());
+            event.setLongitude(pf2.getLongitude());
+        }
+
+        ////VIEW 3
+
+
+        ////VIEW 4
+        View v4 = pf4.getView4();
+
+        EditText input_beskrivning = (EditText) v4.findViewById(R.id.input_beskrivningHandelse);
+        String beskrivningHandelse = input_beskrivning.getText().toString();
+
+        event.setDescription(beskrivningHandelse);
+
+
+        anmalanItem.addEvent(event);
+        Intent intent = new Intent(this, EventListActivity.class);
+        intent.putExtra("anmalanItem", anmalanItem);
+        startActivity(intent);
     }
 
 
@@ -115,15 +192,19 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             switch (position) {
                 case 0:
                     fragment = PlaceholderFragment1.newInstance();
+                    pf1 = (PlaceholderFragment1) fragment;
                     break;
                 case 1:
                     fragment = new AddPlaceFragment().newInstance();
+                    pf2 = (AddPlaceFragment) fragment;
                     break;
                 case 2:
                     fragment = PlaceholderFragment3.newInstance();
+                    pf3 = (PlaceholderFragment3) fragment;
                     break;
                 case 3:
                     fragment = PlaceholderFragment4.newInstance();
+                    pf4 = (PlaceholderFragment4) fragment;
                     break;
             }
             return fragment;
@@ -173,14 +254,18 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
         public PlaceholderFragment1() {
 
         }
-        Calendar myCalendar = Calendar.getInstance();
 
+        Calendar myCalendar = Calendar.getInstance();
+        EditText namnHandelse;
         TextView datePicker;
         TextView timePicker;
+        View view;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment1_add_event, container, false);
+            namnHandelse = (EditText) rootView.findViewById(R.id.input_namnhandelse);
             datePicker = (TextView) rootView.findViewById(R.id.input_datepicker);
             timePicker = (TextView) rootView.findViewById(R.id.input_timepicker);
 
@@ -202,7 +287,7 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
 
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    myCalendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
+                    myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     myCalendar.set(Calendar.MINUTE, minute);
                     updateTimeLabel();
                 }
@@ -227,18 +312,25 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
                     new TimePickerDialog(getContext(), time, myCalendar
-                            .get(Calendar.HOUR_OF_DAY),myCalendar.get(Calendar.MINUTE),true).show();
+                            .get(Calendar.HOUR_OF_DAY), myCalendar.get(Calendar.MINUTE), true).show();
                 }
             });
-
+            view = rootView;
             return rootView;
         }
+
+        public View getView1(){
+            return view;
+        }
+
+
         private void updateDateLabel() {
 
             String myFormat = "dd-MM-yyyy"; //In which you need put here
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
             datePicker.setText(sdf.format(myCalendar.getTime()));
         }
+
         private void updateTimeLabel() {
 
             String myFormat = "HH:mm"; //In which you need put here
@@ -247,33 +339,8 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             timePicker.setText(sdf.format(myCalendar.getTime()));
         }
     }
-    public static class PlaceholderFragment2 extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment2 newInstance() {
-            PlaceholderFragment2 fragment = new PlaceholderFragment2();
-            return fragment;
-        }
 
-        public PlaceholderFragment2() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment2_add_event, container, false);
-
-            return rootView;
-        }
-    }
     public static class PlaceholderFragment3 extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -293,14 +360,23 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
         public PlaceholderFragment3() {
         }
 
+        View view;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment3_add_event, container, false);
 
+            view = rootView;
             return rootView;
         }
+
+
+        public View getView3(){
+            return view;
+        }
     }
+
     public static class PlaceholderFragment4 extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -320,18 +396,27 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
         public PlaceholderFragment4() {
         }
 
+        View view;
+        EditText namnHandelse;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment4_add_event, container, false);
-            FloatingActionButton fab =(FloatingActionButton)rootView.findViewById(R.id.finish_button);
-            fab.setOnClickListener(new View.OnClickListener() {
+            FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.finish_button);
+            namnHandelse = (EditText) rootView.findViewById(R.id.input_beskrivningHandelse);
+            /*fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //Finisha skapandet av en händelse.
                 }
-            });
+            });*/
+            view = rootView;
             return rootView;
+        }
+
+        public View getView4(){
+            return view;
         }
     }
 }

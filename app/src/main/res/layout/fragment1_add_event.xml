@@ -11,11 +11,10 @@
     <android.support.design.widget.TextInputLayout android:scaleX="1"
         android:scaleY="1" android:id="@+id/input.layout.namn" android:layout_width="match_parent" android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/input.handelsenamn"
+            android:id="@+id/input_namnhandelse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint.handelsenamn"
-            android:inputType="textPersonName"
             />
     </android.support.design.widget.TextInputLayout>
     <LinearLayout
@@ -63,7 +62,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
-            android:text="2014-12-13"
+            android:text="2015-11-17"
             android:textSize="20dp"
             android:id="@+id/input.datepicker"
             style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
@@ -91,6 +90,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/isApproximate"
             />
     </LinearLayout>
 
