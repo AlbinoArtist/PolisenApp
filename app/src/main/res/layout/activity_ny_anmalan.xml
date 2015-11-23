@@ -26,8 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/include"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:padding="5dp"
         android:orientation="vertical"
         android:gravity="end">
 
@@ -48,7 +49,7 @@
             android:layout_marginBottom="0dp"
             android:layout_marginTop="9dp"
             card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="0.01dp"
+            card_view:cardElevation="5dp"
             android:onClick="cardClick"
             android:id="@+id/card.fstold">
 
@@ -112,7 +113,7 @@
             android:layout_marginBottom="0dp"
             android:layout_marginTop="9dp"
             card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="0.01dp"
+            card_view:cardElevation="5dp"
             android:onClick="cardClick"
             android:id="@+id/card.stold">
 
@@ -175,7 +176,7 @@
             android:layout_marginBottom="0dp"
             android:layout_marginTop="9dp"
             card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="0.01dp"
+            card_view:cardElevation="5dp"
             android:onClick="cardClick"
             android:id="@+id/card.konto">
 
