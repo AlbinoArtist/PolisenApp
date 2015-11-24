@@ -243,7 +243,7 @@
                         android:textAlignment="center"
                         android:onClick="dialogWindow"
                         android:textSize="26sp"
-                        android:background="@android:color/holo_green_light"
+                        android:background="@android:color/holo_green_dark"
                         android:text="LÄMNA IN ANMÄLAN"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"

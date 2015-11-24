@@ -263,7 +263,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
                 android:layout_marginTop="25dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@android:color/holo_green_dark"
                 android:onClick="onCreatePressed"
                 android:scaleX="0"
                 android:scaleY="0"
