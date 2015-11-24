@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.FileInputStream;
@@ -31,7 +32,8 @@ public class EditReportActivity extends AppCompatActivity {
     private AnmalanItem anmalanItem;
     private MaterialDialog mMaterialDialog;
     private ArrayList<AnmalanItem> anmalanItemList;
-    private TextView stulnaForemalButton, garningsManButon, vittnenButton, eventButton, lamnaAnmalanButton;
+    private RelativeLayout stulnaForemalButton, garningsManButon, vittnenButton, eventButton;
+    private TextView lamnaAnmalanButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +58,11 @@ public class EditReportActivity extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.textHeader);
         tv.setText("Anmälan: " + anmalanItem.getBrottsTyp());
 
-        stulnaForemalButton = (TextView) findViewById(R.id.stulnaForemal);
-        garningsManButon = (TextView) findViewById(R.id.garningsman);
-        vittnenButton = (TextView) findViewById(R.id.vittnen);
+        stulnaForemalButton = (RelativeLayout) findViewById(R.id.stulnaForemalLayout);
+        garningsManButon = (RelativeLayout) findViewById(R.id.garningsmanLayout);
+        vittnenButton = (RelativeLayout) findViewById(R.id.vittnenLayout);
         lamnaAnmalanButton = (TextView) findViewById(R.id.lamnaAnmalan);
-        eventButton = (TextView) findViewById(R.id.event);
+        eventButton = (RelativeLayout) findViewById(R.id.eventLayout);
 
         if(anmalanItem.isSubmitted().equals("Inlämnad")){
             lamnaAnmalanButton.setTextColor(getResources().getColor(R.color.colorDivider));

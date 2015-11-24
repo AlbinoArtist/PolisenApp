@@ -77,6 +77,8 @@ public class CulpritListActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
         mFab = (FloatingActionButton) findViewById(R.id.reveal_add_fab);
         mFabSize = 16f;
         mFab.setOnClickListener(new View.OnClickListener() {

@@ -53,7 +53,7 @@
                 card_view:cardElevation="5dp"
                 android:layout_marginBottom="0dp">
                 <RelativeLayout
-                    android:id="@+id/top_layout"
+                    android:id="@+id/stulnaForemalLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -64,7 +64,7 @@
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="fill_parent"
-                            android:src="@drawable/account_multiple"
+                            android:src="@drawable/archive"
                             android:gravity="center_vertical"
                             android:id="@+id/stulna.icon"
                             android:paddingRight="8dp"
@@ -103,7 +103,7 @@
                 android:layout_marginBottom="0dp">
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayout3"
+                    android:id="@+id/garningsmanLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -145,7 +145,7 @@
                 card_view:cardElevation="5dp"
                 android:layout_marginBottom="0dp">
                 <RelativeLayout
-                    android:id="@+id/relativeLayout4"
+                    android:id="@+id/vittnenLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -186,7 +186,7 @@
                 card_view:cardElevation="5dp"
                 android:layout_marginBottom="0dp">
                 <RelativeLayout
-                    android:id="@+id/relativeLayout2"
+                    android:id="@+id/eventLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
@@ -243,6 +243,7 @@
                         android:textAlignment="center"
                         android:onClick="dialogWindow"
                         android:textSize="26sp"
+                        android:background="@android:color/holo_green_light"
                         android:text="LÄMNA IN ANMÄLAN"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"

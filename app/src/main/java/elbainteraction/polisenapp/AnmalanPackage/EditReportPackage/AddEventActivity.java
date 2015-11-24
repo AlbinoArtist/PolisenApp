@@ -160,11 +160,11 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
         }
 
 
-        String date = ((TextView) v1.findViewById(R.id.input_datepicker)).toString();
+        String date = ((TextView) v1.findViewById(R.id.input_datepicker)).getText().toString();
 
         event.setDate(date);
 
-        String time = ((TextView) v1.findViewById(R.id.input_timepicker)).toString();
+        String time = ((TextView) v1.findViewById(R.id.input_timepicker)).getText().toString();
 
         event.setTime(time);
 

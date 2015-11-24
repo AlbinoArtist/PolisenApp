@@ -62,7 +62,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
-            android:text="2015-11-17"
+            android:text="24-11-2015"
             android:textSize="20dp"
             android:id="@+id/input.datepicker"
             style="@android:style/Widget.DeviceDefault.Light.Spinner"/>
