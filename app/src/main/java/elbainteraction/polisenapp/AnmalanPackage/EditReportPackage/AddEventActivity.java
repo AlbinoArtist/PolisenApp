@@ -219,6 +219,8 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             iv.getLayoutParams().width = 400;
             iv.getLayoutParams().height = 400;
 
+
+
         }
 
 

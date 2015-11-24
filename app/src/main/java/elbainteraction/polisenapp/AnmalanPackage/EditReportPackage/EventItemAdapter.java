@@ -42,9 +42,8 @@ public class EventItemAdapter extends RecyclerView.Adapter<EventItemAdapter.View
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         final Event eventItem = mItems.get(i);
         viewHolder.itemName.setText(eventItem.getName());
-        viewHolder.description.setText("Kön: " + eventItem.getDescription());
+        viewHolder.date.setText(eventItem.getTime() + " " + eventItem.getDate());
         currentItem = mItems.get(i);
-
     }
 
     @Override
@@ -55,14 +54,14 @@ public class EventItemAdapter extends RecyclerView.Adapter<EventItemAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView itemName;
-        public TextView description;
+        public TextView date;
         public View currentItemView;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemName = (TextView) itemView.findViewById(R.id.itemName);
-            description = (TextView) itemView.findViewById(R.id.description);
+            date = (TextView) itemView.findViewById(R.id.date);
             currentItemView = itemView;
         }
     }

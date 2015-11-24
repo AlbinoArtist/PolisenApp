@@ -40,8 +40,8 @@ public class WitnessItemAdapter extends RecyclerView.Adapter<WitnessItemAdapter.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         final Witness witnessItem = mItems.get(i);
-        viewHolder.itemName.setText("Namn: " + witnessItem.getSurName() + ", " + witnessItem.getFirstName());
-        viewHolder.phoneNumber.setText("Telefonnummer: " + witnessItem.getPhoneNumber());
+        viewHolder.itemName.setText(witnessItem.getFirstName() + " " + witnessItem.getSurName());
+        viewHolder.ssNumber.setText("Personnummer: " + witnessItem.getPersonNumber());
         currentItem = mItems.get(i);
 
     }
@@ -54,14 +54,14 @@ public class WitnessItemAdapter extends RecyclerView.Adapter<WitnessItemAdapter.
     class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView itemName;
-        public TextView phoneNumber;
+        public TextView ssNumber;
         public View currentItemView;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemName = (TextView) itemView.findViewById(R.id.itemName);
-            phoneNumber = (TextView) itemView.findViewById(R.id.phoneNumber);
+            ssNumber = (TextView) itemView.findViewById(R.id.ssNumber);
             currentItemView = itemView;
         }
     }
