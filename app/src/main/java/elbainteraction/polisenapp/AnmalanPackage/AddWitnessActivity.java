@@ -1,7 +1,8 @@
-package elbainteraction.polisenapp.AnmalanPackage.EditReportPackage;
+package elbainteraction.polisenapp.AnmalanPackage;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -27,7 +28,6 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -39,15 +39,19 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
+import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.AddPlaceFragment;
+import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.Event;
+import elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EventListActivity;
 import elbainteraction.polisenapp.R;
+import me.drakeet.materialdialog.MaterialDialog;
 
 
-public class AddEventActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class AddWitnessActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private AnmalanItem anmalanItem;
     private PlaceholderFragment1 pf1;
     private AddPlaceFragment pf2;
     private PlaceholderFragment3 pf3;
@@ -69,7 +73,7 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
      */
     private ViewPager mViewPager;
     private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private  RecyclerView.LayoutManager mLayoutManager;
     private GridAdapter mAdapter;
 
     @Override
@@ -89,7 +93,7 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
-        anmalanItem = (AnmalanItem) getIntent().getSerializableExtra("anmalanItem");
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
@@ -99,7 +103,6 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             private boolean firstTime = true;
-
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -111,14 +114,16 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
                 if (position == 1) {
                     Snackbar snackbar = Snackbar
                             .make(findViewById(R.id.fragment2_top), "Släpp en markör på platsen där händelsen ägde rum.", Snackbar.LENGTH_LONG).setAction("OK", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
+                                @Override
+                                public void onClick(View view) {
 
-                                        }
-                                    }
-                            );
+                                }
+                            });
+
+
                     snackbar.show();
-                } else if (position == 2 && firstTime) {
+                }
+                else if (position == 2 && firstTime) {
 
                     View v3 = pf3.getView3();
                     mRecyclerView = (RecyclerView) v3.findViewById(R.id.recycler_view);
@@ -129,16 +134,14 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
                     firstTime = false;
 
                 }
-
-
             }
-
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
         });
+
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -149,69 +152,55 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
 
 
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
     }
 
     public void addEvent(View view) {
+        final MaterialDialog feebackDialog = new MaterialDialog(this);
+        feebackDialog.setTitle("Inlämnat vittnessmål");
+        feebackDialog.setCanceledOnTouchOutside(false);
+        feebackDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                onBackPressed();
+            }
+        });
+        feebackDialog.setMessage("Ditt vittnesmål är inlämnat! Tack för att du tar ditt ansvar som medborgare.");
+        feebackDialog.setPositiveButton("OK", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        final MaterialDialog mMaterialDialog = new MaterialDialog(this);
+        mMaterialDialog.setPositiveButton("Lämna in", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                feebackDialog.show();
+                mMaterialDialog.dismiss();
+            }
+        });
+        mMaterialDialog.setNegativeButton("Avbryt", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMaterialDialog.dismiss();
+            }
+        });
 
-        Event event;
-
-        ////VIEW 1
-        View v1 = pf1.getView1();
-
-        EditText t = (EditText) v1.findViewById(R.id.input_namnhandelse);
-        String namnHandelse = t.getText().toString();
-
-        CheckBox isApproximate = (CheckBox) v1.findViewById(R.id.isApproximate);
-
-        if (isApproximate.isChecked()) {
-            event = new Event(namnHandelse, true);
-        } else {
-            event = new Event(namnHandelse, false);
-        }
-
-
-        String date = ((TextView) v1.findViewById(R.id.input_datepicker)).getText().toString();
-
-        event.setDate(date);
-
-        String time = ((TextView) v1.findViewById(R.id.input_timepicker)).getText().toString();
-
-        event.setTime(time);
-
-        ////VIEW 2
-
-        if (pf2.isToggled()) {
-            event.setLatitude(pf2.getLatitude());
-            event.setLongitude(pf2.getLongitude());
-        }
-
-        ////VIEW 3
-
-
-        ////VIEW 4
-        View v4 = pf4.getView4();
-
-        EditText input_beskrivning = (EditText) v4.findViewById(R.id.input_beskrivningHandelse);
-        String beskrivningHandelse = input_beskrivning.getText().toString();
-
-        event.setDescription(beskrivningHandelse);
-
-
-        anmalanItem.addEvent(event);
-        Intent intent = new Intent(this, EventListActivity.class);
-        intent.putExtra("anmalanItem", anmalanItem);
-        startActivity(intent);
+        mMaterialDialog.setTitle("Lämna in vittnesmål");
+        mMaterialDialog.setMessage("Vill du lämna in ditt vittnesmål?");
+        mMaterialDialog.show();
     }
 
 
+    private boolean firstTime = true;
     public void addMedia(View view) {
-
         Intent i = new Intent(
                 Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         startActivityForResult(i, RESULT_LOAD_IMAGE);
     }
@@ -228,16 +217,12 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
 
-
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            //ImageView imageView = (ImageView) findViewById(R.id.imgView);
-            //imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             mAdapter.add(BitmapFactory.decodeFile(picturePath));
             mAdapter.notifyDataSetChanged();
-
 
         }
 
@@ -390,7 +375,7 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             return rootView;
         }
 
-        public View getView1() {
+        public View getView1(){
             return view;
         }
 
@@ -442,7 +427,7 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             return rootView;
         }
 
-        public View getView3() {
+        public View getView3(){
             return view;
         }
     }
@@ -485,95 +470,93 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             return rootView;
         }
 
-        public View getView4() {
+        public View getView4(){
             return view;
         }
     }
+    public static class InnerCard{
+            private String mName;
+            private Bitmap mThumbnail;
 
-    public static class InnerCard {
-        private String mName;
-        private Bitmap mThumbnail;
+            public String getName() {
+                return mName;
+            }
 
-        public String getName() {
-            return mName;
+            public void setName(String name) {
+                this.mName = name;
+            }
+
+            public Bitmap getThumbnail() {
+                return mThumbnail;
+            }
+
+            public void setThumbnail(Bitmap thumbnail) {
+                this.mThumbnail = thumbnail;
+            }
         }
 
-        public void setName(String name) {
-            this.mName = name;
-        }
-
-        public Bitmap getThumbnail() {
-            return mThumbnail;
-        }
-
-        public void setThumbnail(Bitmap thumbnail) {
-            this.mThumbnail = thumbnail;
-        }
     }
+
+class GridAdapter  extends RecyclerView.Adapter<elbainteraction.polisenapp.AnmalanPackage.GridAdapter.ViewHolder> {
+
+List<AddWitnessActivity.InnerCard> mItems;
+
+public GridAdapter() {
+    super();
+    mItems = new ArrayList<AddWitnessActivity.InnerCard>();
+    AddWitnessActivity.InnerCard species = new AddWitnessActivity.InnerCard();
+    species.setName("Medialista tom");
+    species.setThumbnail(Bitmap.createBitmap(150, 150, Bitmap.Config.ARGB_8888));
+    mItems.add(species);
+
 
 }
-
-class GridAdapter extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
-
-    List<AddEventActivity.InnerCard> mItems;
-
-    public GridAdapter() {
-        super();
-        mItems = new ArrayList<AddEventActivity.InnerCard>();
-        AddEventActivity.InnerCard species = new AddEventActivity.InnerCard();
-        species.setName("Medialista tom");
-        species.setThumbnail(Bitmap.createBitmap(150, 150, Bitmap.Config.ARGB_8888));
-        mItems.add(species);
-
-
-    }
-
     private boolean firstTime = true;
 
     public void add(Bitmap bt) {
-        if (firstTime) {
+        if(firstTime){
             mItems.remove(0);
-            firstTime = false;
+            firstTime=false;
         }
-        AddEventActivity.InnerCard species = new AddEventActivity.InnerCard();
-        species.setName("Bild " + (mItems.size() + 1));
+        AddWitnessActivity.InnerCard species = new AddWitnessActivity.InnerCard();
+        species.setName("Bild " +(mItems.size()+1));
         species.setThumbnail(bt);
         mItems.add(species);
 
     }
 
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.card_image_asset, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(v);
+@Override
+public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    View v = LayoutInflater.from(viewGroup.getContext())
+            .inflate(R.layout.card_image_asset, viewGroup, false);
+    ViewHolder viewHolder = new ViewHolder(v);
 
-        return viewHolder;
+    return viewHolder;
+}
+
+@Override
+public void onBindViewHolder(ViewHolder viewHolder, int i) {
+    AddWitnessActivity.InnerCard nature = mItems.get(i);
+    viewHolder.tvspecies.setText(nature.getName());
+    viewHolder.imgThumbnail.setImageBitmap(nature.getThumbnail());
+}
+
+@Override
+public int getItemCount() {
+    return mItems.size();
+}
+
+class ViewHolder extends RecyclerView.ViewHolder{
+
+    public ImageView imgThumbnail;
+    public TextView tvspecies;
+
+    public ViewHolder(View itemView) {
+        super(itemView);
+        imgThumbnail = (ImageView)itemView.findViewById(R.id.img_thumbnail);
+        tvspecies = (TextView)itemView.findViewById(R.id.tv_species);
     }
-
-    @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        AddEventActivity.InnerCard nature = mItems.get(i);
-        viewHolder.tvspecies.setText(nature.getName());
-        viewHolder.imgThumbnail.setImageBitmap(nature.getThumbnail());
-    }
-
-    @Override
-    public int getItemCount() {
-        return mItems.size();
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        public ImageView imgThumbnail;
-        public TextView tvspecies;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            imgThumbnail = (ImageView) itemView.findViewById(R.id.img_thumbnail);
-            tvspecies = (TextView) itemView.findViewById(R.id.tv_species);
-        }
-    }
+}
 }
 

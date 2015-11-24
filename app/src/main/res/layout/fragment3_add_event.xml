@@ -29,7 +29,7 @@
         android:clickable="true"
         android:onClick="addMedia"
         app:layout_anchor="@id/toplayout"
-        android:layout_margin="0dp"
+        android:layout_margin="@dimen/fab_margin"
         />
 
 

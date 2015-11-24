@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import elbainteraction.polisenapp.AnmalanPackage.AddWitnessActivity;
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanFragment;
 import elbainteraction.polisenapp.AnsokanPackage.AnsokanFragment;
 import elbainteraction.polisenapp.senastePackage.SenasteFragment;
@@ -63,7 +64,7 @@ public class DrawerActivity extends AppCompatActivity
 
             initiateDrawerActivity();
         }else if (id == R.id.nav_vittne) {
-            fragmentManager.beginTransaction().replace(R.id.main, new VittneFragment()).commit();
+            startActivity(new Intent(this, AddWitnessActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
