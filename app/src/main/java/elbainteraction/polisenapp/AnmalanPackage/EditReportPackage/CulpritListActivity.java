@@ -46,7 +46,7 @@ public class CulpritListActivity extends AppCompatActivity {
     private FrameLayout mFabContainer;
     private LinearLayout mAddNewContainer;
 
-    public final static float SCALE_FACTOR = 18f;
+    public final static float SCALE_FACTOR = 20f;
     public final static int ANIMATION_DURATION = 300;
     public final static int MINIMUN_X_DISTANCE = 200;
 

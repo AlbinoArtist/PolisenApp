@@ -81,6 +81,15 @@
                 android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EventListActivity" />
         </activity>
         <activity
+            android:name=".AnmalanPackage.AddWitnessActivity"
+            android:label="Vittnesuppgifter"
+            android:parentActivityName=".DrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="elbainteraction.polisenapp.DrawerActivity" />
+        </activity>
+        <activity
             android:name=".AnmalanPackage.EditReportPackage.EventListActivity"
             android:label="@string/title_activity_event_list"
             android:parentActivityName=".AnmalanPackage.EditReportPackage.EditReportActivity"
