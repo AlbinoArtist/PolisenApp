@@ -43,6 +43,7 @@ public class EditReportActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
             @Override

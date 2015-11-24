@@ -39,12 +39,8 @@ public class CulpritListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private TextView headerCulpritList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        bindViews();
-    }
-
+    private LinearLayout layoutUnknown;
+    private LinearLayout layoutKnown;
 
     private FloatingActionButton mFab;
     private FrameLayout mFabContainer;
@@ -60,6 +56,11 @@ public class CulpritListActivity extends AppCompatActivity {
     //fullösning
     private Spinner programSpinner;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bindViews();
+    }
 
     private void bindViews() {
         setContentView(R.layout.activity_culprit_list);
@@ -109,10 +110,12 @@ public class CulpritListActivity extends AppCompatActivity {
         programSpinner.setAdapter(spinnerArrayAdapter);
         programSpinner.setScaleY(0);
         programSpinner.setScaleX(0);
-        mAddNewContainer.addView(programSpinner, 4);
 
-        layoutUnknown = (LinearLayout) findViewById(R.id.layout_linear_unknown);
         layoutKnown = (LinearLayout) findViewById(R.id.layout_linear_known);
+        layoutUnknown = (LinearLayout) findViewById(R.id.layout_linear_unknown);
+
+        ((LinearLayout) findViewById(R.id.add_new_container)).addView(programSpinner, 4);
+
         RadioGroup groupKnownUnknown = (RadioGroup) findViewById(R.id.radio_knownunknown);
         groupKnownUnknown.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
@@ -358,9 +361,6 @@ public class CulpritListActivity extends AppCompatActivity {
             }
         }
     }
-
-    private LinearLayout layoutUnknown;
-    private LinearLayout layoutKnown;
 
     private void showView(LinearLayout layout) {
         layout.setVisibility(View.VISIBLE);
