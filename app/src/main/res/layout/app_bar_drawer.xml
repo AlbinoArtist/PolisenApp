@@ -7,7 +7,10 @@
     tools:context=".DrawerActivity">
 
     <include layout="@layout/toolbar_picturetext"/>
-
+    <FrameLayout android:id="@+id/frame"
+        android:layout_width="wrap_content" android:layout_height="match_parent"
+        android:layout_gravity="start" android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_drawer" app:menu="@menu/activity_drawer_drawer_logged_out" ></FrameLayout>
     <include layout="@layout/content_drawer" />
 
 </android.support.design.widget.CoordinatorLayout>
