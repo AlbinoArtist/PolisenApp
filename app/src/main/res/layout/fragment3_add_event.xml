@@ -12,16 +12,12 @@
     tools:context=".AddEventActivity">
 
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/linearLayout"
-        android:gravity="center_vertical">
-
-
-
-    </LinearLayout>
+        android:layout_height="fill_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
 
     <android.support.design.widget.FloatingActionButton
         app:layout_behavior="@string/appbar_scrolling_view_behavior"

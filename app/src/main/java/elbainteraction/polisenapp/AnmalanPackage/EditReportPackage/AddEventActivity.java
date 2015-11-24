@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +35,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanItem;
@@ -63,7 +68,9 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
+    private RecyclerView mRecyclerView;
+    private  RecyclerView.LayoutManager mLayoutManager;
+    private GridAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +107,7 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
 
                 if (position == 1) {
                     Snackbar snackbar = Snackbar
-                            .make(findViewById(R.id.fragment2_top), "Klicka på knappen för att släppa en markör mitt på skärmen.", Snackbar.LENGTH_LONG).setAction("OK", new View.OnClickListener() {
+                            .make(findViewById(R.id.fragment2_top), "Släpp en markör på platsen där händelsen ägde rum.", Snackbar.LENGTH_LONG).setAction("OK", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
 
@@ -118,11 +125,15 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
+
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
 
     }
+
+
 
 
     @Override
@@ -181,15 +192,21 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
     }
 
 
-
+    private boolean firstTime = true;
     public void addMedia(View view) {
-
+                if(firstTime){
+             View v3 = pf3.getView3();
+             mRecyclerView = (RecyclerView)v3.findViewById(R.id.recycler_view);
+             mAdapter = new GridAdapter();
+             mRecyclerView.setAdapter(mAdapter);
+                    mLayoutManager = new GridLayoutManager(this, 2);
+                    mRecyclerView.setLayoutManager(mLayoutManager);
+             firstTime = false;}
         Intent i = new Intent(
                 Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         startActivityForResult(i, RESULT_LOAD_IMAGE);
-
     }
 
     @Override
@@ -211,13 +228,8 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
 
             //ImageView imageView = (ImageView) findViewById(R.id.imgView);
             //imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
-            ImageView iv = new ImageView(this);
-            iv.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-            LinearLayout linLay = (LinearLayout) findViewById(R.id.linearLayout);
-            linLay.addView(iv);
-            iv.getLayoutParams().width = 400;
-            iv.getLayoutParams().height = 400;
+            mAdapter.add(BitmapFactory.decodeFile(picturePath));
+            mAdapter.notifyDataSetChanged();
 
         }
 
@@ -413,6 +425,7 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
         }
 
         public PlaceholderFragment3() {
+
         }
 
         View view;
@@ -421,16 +434,9 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment3_add_event, container, false);
-
             view = rootView;
             return rootView;
         }
-
-
-
-
-
-
 
         public View getView3(){
             return view;
@@ -479,4 +485,88 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             return view;
         }
     }
+    public static class InnerCard{
+            private String mName;
+            private Bitmap mThumbnail;
+
+            public String getName() {
+                return mName;
+            }
+
+            public void setName(String name) {
+                this.mName = name;
+            }
+
+            public Bitmap getThumbnail() {
+                return mThumbnail;
+            }
+
+            public void setThumbnail(Bitmap thumbnail) {
+                this.mThumbnail = thumbnail;
+            }
+        }
+
+    }
+    class GridAdapter  extends RecyclerView.Adapter<GridAdapter.ViewHolder> {
+
+    List<AddEventActivity.InnerCard> mItems;
+
+    public GridAdapter() {
+        super();
+        mItems = new ArrayList<AddEventActivity.InnerCard>();
+        AddEventActivity.InnerCard species = new AddEventActivity.InnerCard();
+        species.setName("Medialista tom");
+        species.setThumbnail(Bitmap.createBitmap(150, 150, Bitmap.Config.ARGB_8888));
+        mItems.add(species);
+
+
+    }
+        private boolean firstTime = true;
+
+        public void add(Bitmap bt) {
+            if(firstTime){
+                mItems.remove(0);
+                firstTime=false;
+            }
+            AddEventActivity.InnerCard species = new AddEventActivity.InnerCard();
+            species.setName("Bild " +(mItems.size()+1));
+            species.setThumbnail(bt);
+            mItems.add(species);
+
+        }
+
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.card_image_asset, viewGroup, false);
+        ViewHolder viewHolder = new ViewHolder(v);
+
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+        AddEventActivity.InnerCard nature = mItems.get(i);
+        viewHolder.tvspecies.setText(nature.getName());
+        viewHolder.imgThumbnail.setImageBitmap(nature.getThumbnail());
+    }
+
+    @Override
+    public int getItemCount() {
+        return mItems.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder{
+
+        public ImageView imgThumbnail;
+        public TextView tvspecies;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            imgThumbnail = (ImageView)itemView.findViewById(R.id.img_thumbnail);
+            tvspecies = (TextView)itemView.findViewById(R.id.tv_species);
+        }
+    }
 }
+
