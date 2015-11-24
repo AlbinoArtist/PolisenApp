@@ -2,13 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_anmalan" android:icon="@drawable/ic_view_list_black_24dp"
-            android:title="Anmälningar" />
-        <item android:id="@+id/nav_ansokan" android:icon="@drawable/ic_assignment_turned_in_black_24dp"
-            android:title="Ansökningar" />
         <item android:id="@+id/nav_aktuellt" android:icon="@drawable/ic_rss_box_black_24dp"
-            android:title="Senaste Nytt" />
-        <item android:id="@+id/nav_vittne" android:icon="@drawable/ic_eye_black_24dp"
+            android:title="Senaste Nytt"
+            />
+
+        <item android:id="@+id/nav_anmalan" android:icon="@drawable/lock"
+            android:title="Anmälningar" />
+        <item android:id="@+id/nav_ansokan" android:icon="@drawable/lock"
+            android:title="Ansökningar" />
+        <item android:id="@+id/nav_vittne" android:icon="@drawable/lock"
             android:title="Lämna Vittnessuppgifter" />
     </group>
 
