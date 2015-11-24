@@ -231,6 +231,8 @@ public class AddEventActivity extends AppCompatActivity implements OnMapReadyCal
             mAdapter.add(BitmapFactory.decodeFile(picturePath));
             mAdapter.notifyDataSetChanged();
 
+
+
         }
 
 

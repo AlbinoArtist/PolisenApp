@@ -64,7 +64,7 @@
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="fill_parent"
-                            android:src="@drawable/archive"
+                            android:src="@drawable/account_multiple"
                             android:gravity="center_vertical"
                             android:id="@+id/stulna.icon"
                             android:paddingRight="8dp"

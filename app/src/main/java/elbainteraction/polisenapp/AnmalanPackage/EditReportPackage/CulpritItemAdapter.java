@@ -40,25 +40,10 @@ public class CulpritItemAdapter extends RecyclerView.Adapter<CulpritItemAdapter.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         final Culprit culpritItem = mItems.get(i);
-        viewHolder.itemName.setText("Okänd man");
+        viewHolder.itemName.setText("Okänd");
         viewHolder.sex.setText("Kön: " + culpritItem.getSex());
+        viewHolder.age.setText("Ålder: " + culpritItem.getAge());
         currentItem = mItems.get(i);
-
-        /*
-        viewHolder.currentItemView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                //SKICKA ITEM TILL editREPORT
-                Intent intent = new Intent(activity, EditReportActivity.class);
-                intent.putExtra("anmalanItem", anmalanItem);
-                activity.startActivity(intent);
-
-            }
-
-        });
-        */
 
     }
 
@@ -71,6 +56,7 @@ public class CulpritItemAdapter extends RecyclerView.Adapter<CulpritItemAdapter.
 
         public TextView itemName;
         public TextView sex;
+        public TextView age;
         public View currentItemView;
 
 
@@ -78,6 +64,7 @@ public class CulpritItemAdapter extends RecyclerView.Adapter<CulpritItemAdapter.
             super(itemView);
             itemName = (TextView) itemView.findViewById(R.id.itemName);
             sex = (TextView) itemView.findViewById(R.id.sex);
+            age = (TextView) itemView.findViewById(R.id.age);
             currentItemView = itemView;
         }
     }

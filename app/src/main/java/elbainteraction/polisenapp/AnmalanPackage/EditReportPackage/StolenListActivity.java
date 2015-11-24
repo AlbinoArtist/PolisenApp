@@ -170,6 +170,13 @@ public class StolenListActivity extends AppCompatActivity {
         }
     }
 
+
+
+    public void editStolenItem(BikeItem bikeItem){
+
+
+    }
+
     @Override
     public void onBackPressed() {
         if (mAddNewContainer.getVisibility() == View.GONE) {

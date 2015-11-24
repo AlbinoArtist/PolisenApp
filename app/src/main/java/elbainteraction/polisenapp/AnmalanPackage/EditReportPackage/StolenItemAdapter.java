@@ -45,23 +45,8 @@ public class StolenItemAdapter extends RecyclerView.Adapter<StolenItemAdapter.Vi
         final BikeItem bikeItem = mItems.get(i);
         viewHolder.itemType.setText("Cykel");
         viewHolder.brand.setText("Fabrikat: " + bikeItem.getBrand());
+        viewHolder.colorStolenItem.setText("Färg: " + bikeItem.getColor());
         currentItem = mItems.get(i);
-
-        /*
-        viewHolder.currentItemView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                //SKICKA ITEM TILL editREPORT
-                Intent intent = new Intent(activity, EditReportActivity.class);
-                intent.putExtra("anmalanItem", anmalanItem);
-                activity.startActivity(intent);
-
-            }
-
-        });
-        */
 
     }
 
@@ -74,6 +59,7 @@ public class StolenItemAdapter extends RecyclerView.Adapter<StolenItemAdapter.Vi
 
         public TextView itemType;
         public TextView brand;
+        public TextView colorStolenItem;
         public View currentItemView;
 
 
@@ -81,6 +67,7 @@ public class StolenItemAdapter extends RecyclerView.Adapter<StolenItemAdapter.Vi
             super(itemView);
             itemType = (TextView) itemView.findViewById(R.id.itemType);
             brand = (TextView) itemView.findViewById(R.id.brand);
+            colorStolenItem = (TextView) itemView.findViewById(R.id.colorStolenItem);
             currentItemView = itemView;
         }
     }
