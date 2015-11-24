@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import elbainteraction.polisenapp.AnmalanPackage.AddWitnessActivity;
 import elbainteraction.polisenapp.AnmalanPackage.AnmalanFragment;
@@ -19,12 +20,18 @@ import elbainteraction.polisenapp.AnsokanPackage.AnsokanFragment;
 import elbainteraction.polisenapp.senastePackage.SenasteFragment;
 
 public class DrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+    FragmentManager fragmentManager;
+    SharedPreferences mPrefs;
+    boolean isLoggedin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        fragmentManager = getFragmentManager();
+        mPrefs = getSharedPreferences("login", MODE_PRIVATE);
         initiateDrawerActivity();
     }
 
@@ -41,15 +48,27 @@ public class DrawerActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getFragmentManager();
+
+        SharedPreferences.Editor mEditor = mPrefs.edit();
 
         if (id == R.id.nav_anmalan) {
-            fragmentManager.beginTransaction().replace(R.id.main, new AnmalanFragment()).commit();
+
+            if (isLoggedin) {
+                fragmentManager.beginTransaction().replace(R.id.main, new AnmalanFragment()).commit();
+            } else {
+                Toast.makeText(getApplicationContext(), "Du måste logga in för att se dina anmälan", Toast.LENGTH_LONG).show();
+            }
 
         } else if (id == R.id.nav_ansokan) {
-            fragmentManager.beginTransaction().replace(R.id.main, new AnsokanFragment()).commit();
+            if (isLoggedin) {
+                fragmentManager.beginTransaction().replace(R.id.main, new AnsokanFragment()).commit();
+            } else {
+                Toast.makeText(getApplicationContext(), "Du måste logga in för att göra en ansökan", Toast.LENGTH_LONG).show();
+            }
+
         } else if (id == R.id.nav_aktuellt) {
             fragmentManager.beginTransaction().replace(R.id.main, new SenasteFragment()).commit();
         } else if (id == R.id.nav_installning) {
@@ -58,13 +77,16 @@ public class DrawerActivity extends AppCompatActivity
             startActivity(new Intent(this, LoginActivity.class));
         } else if (id == R.id.nav_logout) {
 
-            SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
-            SharedPreferences.Editor mEditor = mPrefs.edit();
-            mEditor.putBoolean("Logged in", false).commit();
+
+            mEditor.putBoolean("login", false).commit();
 
             initiateDrawerActivity();
-        }else if (id == R.id.nav_vittne) {
-            startActivity(new Intent(this, AddWitnessActivity.class));
+        } else if (id == R.id.nav_vittne) {
+            if (isLoggedin) {
+                startActivity(new Intent(this, AddWitnessActivity.class));
+            } else {
+                Toast.makeText(getApplicationContext(), "Du måste logga in för att lämna vittnesuppgifter", Toast.LENGTH_LONG).show();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -73,11 +95,12 @@ public class DrawerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         initiateDrawerActivity();
 
-        if(getIntent().getIntExtra("anmalanFragment", 0) == 1){
+        isLoggedin = mPrefs.getBoolean("login", false);
+        if (getIntent().getIntExtra("anmalanFragment", 0) == 1) {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.main, new AnmalanFragment()).commit();
         }
@@ -85,12 +108,12 @@ public class DrawerActivity extends AppCompatActivity
     }
 
 
-    private void initiateDrawerActivity(){
+    private void initiateDrawerActivity() {
 
         SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
-        boolean loggedIn = mPrefs.getBoolean("Logged in", false);
+        isLoggedin = mPrefs.getBoolean("login", false);
 
-        if (loggedIn){
+        if (isLoggedin) {
             setContentView(R.layout.activity_drawer_logged_in);
         } else {
             setContentView(R.layout.activity_drawer_logged_out);
@@ -110,7 +133,6 @@ public class DrawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main, new SenasteFragment()).commit();
-
 
 
     }

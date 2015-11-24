@@ -153,6 +153,14 @@ public class EventListActivity extends AppCompatActivity {
         }
 
     @Override
+    public void onBackPressed() {
+            super.onBackPressed();
+            Intent intent = new Intent(this, EditReportActivity.class);
+            intent.putExtra("anmalanItem", anmalanItem);
+            startActivity(intent);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 

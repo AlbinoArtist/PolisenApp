@@ -66,6 +66,10 @@ public class EditReportActivity extends AppCompatActivity {
 
         if(anmalanItem.isSubmitted().equals("Inlämnad")){
             lamnaAnmalanButton.setTextColor(getResources().getColor(R.color.colorDivider));
+            TextView shadowRipper = (TextView) findViewById(R.id.shadowRipper);
+                    shadowRipper.setVisibility(View.GONE);
+        } else {
+            lamnaAnmalanButton.setBackgroundColor(getResources().getColor(R.color.holo_green_light));
         }
 
         stulnaForemalButton.setOnClickListener(new View.OnClickListener() {

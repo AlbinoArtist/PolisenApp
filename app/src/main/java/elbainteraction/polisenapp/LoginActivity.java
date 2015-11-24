@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
         SharedPreferences mPrefs = getSharedPreferences("login", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mPrefs.edit();
-        mEditor.putBoolean("Logged in", true).commit();
+        mEditor.putBoolean("login", true).commit();
 
         Intent intent = new Intent(this, DrawerActivity.class);
         startActivity(intent);
