@@ -40,7 +40,12 @@ public class CulpritItemAdapter extends RecyclerView.Adapter<CulpritItemAdapter.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         final Culprit culpritItem = mItems.get(i);
-        viewHolder.itemName.setText("Okänd");
+        if(culpritItem.isKnown()){
+            viewHolder.itemName.setText(culpritItem.getFirstName() + " " + culpritItem.getSurName());
+        } else {
+            viewHolder.itemName.setText("Okänd gärningsman");
+        }
+
         viewHolder.sex.setText("Kön: " + culpritItem.getSex());
         viewHolder.age.setText("Ålder: " + culpritItem.getAge());
         currentItem = mItems.get(i);

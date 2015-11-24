@@ -74,11 +74,11 @@
         <activity
             android:name=".AnmalanPackage.EditReportPackage.AddEventActivity"
             android:label="@string/title_activity_addEvent_list"
-            android:parentActivityName=".AnmalanPackage.EditReportPackage.EditReportActivity"
+            android:parentActivityName=".AnmalanPackage.EditReportPackage.EventListActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EditReportActivity" />
+                android:value="elbainteraction.polisenapp.AnmalanPackage.EditReportPackage.EventListActivity" />
         </activity>
         <activity
             android:name=".AnmalanPackage.EditReportPackage.EventListActivity"
