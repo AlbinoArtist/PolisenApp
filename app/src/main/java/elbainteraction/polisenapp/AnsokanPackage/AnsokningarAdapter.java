@@ -23,23 +23,21 @@ public class AnsokningarAdapter extends RecyclerView.Adapter<AnsokningarAdapter.
         super();
         mItems = new ArrayList<AnsokningarItem>();
         AnsokningarItem ansokan = new AnsokningarItem();
-        ansokan.setName("Ansökan 1");
-        ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
-                "ut labore et dolore magna aliqua. Ut enim ad minim veniam.");
+        ansokan.setName("Protest");
+        ansokan.setDes("Inskickat: 2015-09-06 19:31 \nStatus: Avslagen");
         mItems.add(ansokan);
 
         ansokan = new AnsokningarItem();
-        ansokan.setName("Ansökan 2");
-        ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
-                "ut labore et dolore magna aliqua.");
+        ansokan.setName("Alkoholtillstånd");
+        ansokan.setDes("Inskickat: 2015-11-23 10:27 \nStatus: Godkänd");
         mItems.add(ansokan);
 
         ansokan = new AnsokningarItem();
-        ansokan.setName("Ansökan 3");
-        ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
-                "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.");
+        ansokan.setName("Pass");
+        ansokan.setDes("Inskickat: 2015-11-25 14:32 \nStatus: Behandlas");
         mItems.add(ansokan);
 
+        /*
         ansokan = new AnsokningarItem();
         ansokan.setName("Ansökan 3");
         ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
@@ -52,6 +50,7 @@ public class AnsokningarAdapter extends RecyclerView.Adapter<AnsokningarAdapter.
         ansokan.setDes("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt" +
                 "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.");
         mItems.add(ansokan);
+        */
     }
 
     @Override
